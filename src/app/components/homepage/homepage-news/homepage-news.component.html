@@ -1,36 +1,38 @@
-<div class="mt-12 mx-auto px-6 grid gap-5 lg:grid-cols-3 mb-6">
-  <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
-    <div class="flex-shrink-0">
-      <img class="h-48 w-full object-cover object-center" src="" alt="" />
-    </div>
-    <div class="flex-1 dark:dark p-6 flex flex-col justify-between">
-      <div class="flex-1">
-        <p class="text-sm font-medium text-indigo-600">
-
-          <a href="#" class="hover:underline px-2">Závody</a>
-        </p>
-        <a href="{% url 'news:news-detail' article.id %}" class="block mt-2 hover:text-black dark:hover:text-gray-500">
-          <p class="text-xl font-semibold text-gray-900 dark:dark">Název článku</p>
-          <p class="mt-3 text-base text-gray-500">
-
-          </p>
-        </a>
+<div *ngFor="let article of news">
+  <div class="mt-12 mx-auto px-6 grid gap-5 lg:grid-cols-3 mb-6">
+    <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+      <div class="flex-shrink-0">
+        <img class="h-48 w-full object-cover object-center" src="" alt="" />
       </div>
-      <div class="mt-6 flex items-center">
-        <div class="flex-shrink-0">
-          <a href="#">
-            <span class="sr-only">David Průša</span>
-            <img class="h-10 w-10 rounded-full" src="" alt="" />
+      <div class="flex-1 dark:dark p-6 flex flex-col justify-between">
+        <div class="flex-1">
+          <p class="text-sm font-medium text-indigo-600">
+
+            <a href="#" class="hover:underline px-2">Závody</a>
+          </p>
+          <a href="{% url 'news:news-detail' article.id %}" class="block mt-2 hover:text-black dark:hover:text-gray-500">
+            <p class="text-xl font-semibold text-gray-900 dark:dark">{{article.title}}</p>
+            <p class="mt-3 text-base text-gray-500">
+
+            </p>
           </a>
         </div>
-        <div class="ml-3">
-          <p class="text-sm font-medium text-gray-900 dark:dark">
-            <a href="#" class="hover:underline">David Průša</a>
-          </p>
-          <div class="flex space-x-1 text-sm text-gray-500">
-            <time datetime="16-03-2022">1. června 2022</time>
-            <span aria-hidden="true"> &middot; </span>
-            <span> 1 min. čtení</span>
+        <div class="mt-6 flex items-center">
+          <div class="flex-shrink-0">
+            <a href="#">
+              <span class="sr-only">{{article.author.firstNamew}} {{article.author.lastName}}</span>
+              <img class="h-10 w-10 rounded-full" src="" alt="" />
+            </a>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-900 dark:dark">
+              <a href="#" class="hover:underline">{{article.author.firstName}} {{article.author.lastName}}</a>
+            </p>
+            <div class="flex space-x-1 text-sm text-gray-500">
+              <time datetime="16-03-2022">1. června 2022</time>
+              <span aria-hidden="true"> &middot; </span>
+              <span> 1 min. čtení</span>
+            </div>
           </div>
         </div>
       </div>

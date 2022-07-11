@@ -25,6 +25,9 @@ import { NewsComponent } from './components//news/news.component';
 import { NewsDetailComponent } from './components//news/news-detail/news-detail.component';
 import { HomepageNewsComponent } from './components//homepage/homepage-news/homepage-news.component';
 import { NewsPaginationsComponent } from './components//news/news-paginations/news-paginations.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -50,11 +53,14 @@ import { NewsPaginationsComponent } from './components//news/news-paginations/ne
     NewsComponent,
     NewsDetailComponent,
     HomepageNewsComponent,
-    NewsPaginationsComponent
+    NewsPaginationsComponent,
+    RidersAdminComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [Title],
   bootstrap: [AppComponent]

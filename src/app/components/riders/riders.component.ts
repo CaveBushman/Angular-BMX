@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { RidersService } from 'src/app/services/riders.service';
 
 @Component({
   selector: 'app-riders',
@@ -7,15 +8,18 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./riders.component.css'],
 })
 export class RidersComponent implements OnInit {
-  rider = {
-    first_name: 'Aleš',
-    last_name: 'Barák',
-    club: 'SK Jantar Opava',
-  };
 
-  public constructor(private titleService: Title) {
+  riders: any = [];
+
+  public constructor(private titleService: Title, private ridersService: RidersService) {
     this.titleService.setTitle('Seznam jezdců');
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.ridersService.getRiders().subscribe((response: any) => {
+      this.riders = response.data;
+      console.log(this.riders);
+    })
+  }
 }

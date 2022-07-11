@@ -62,7 +62,7 @@
           </thead>
           <tbody class="dark:dark divide-y divide-gray-200">
 
-            <tr onclick="window.location='#';" class="" style='cursor: pointer;'>
+            <tr *ngFor="let rider of riders" onclick="window.location='#';" class="" style='cursor: pointer;'>
               <td class="px-6 py-2 whitespace-nowrap">
                 <div class="flex items-center">
                     <div class="relative">
@@ -73,30 +73,30 @@
                     </div>
                   <div class="ml-4">
                     <div class="text-sm font-medium text-gray-900 dark:dark">
-                      {{rider.last_name}}
+                      {{rider.lastName}}
                     </div>
                     <div class="text-sm text-gray-500">
-                      {{rider.first_name}}
+                      {{rider.firstName}}
                     </div>
                   </div>
                 </div>
               </td>
               <td class="px-6 py-2 whitespace-nowrap">
-                <div class="text-sm text-gray-900 dark:dark">{{rider.club}}</div>
-                <div class="text-sm text-gray-500 dark:dark">100000000</div>
+                <div class="text-sm text-gray-900 dark:dark">{{rider.club.name}}</div>
+                <div class="text-sm text-gray-500 dark:dark">{{rider.uciid}}</div>
               </td>
               <td class="px-6 py-2 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="">
-                    <div class="text-sm font-medium text-gray-500 dark:dark">20": Boys 15</div>
-                    <div class="text-sm font-medium text-gray-500 dark:dark">24":</div>
+                    <div class="text-sm font-medium text-gray-500 dark:dark">20": {{rider.class20}}</div>
+                    <div class="text-sm font-medium text-gray-500 dark:dark">24": {{rider.class24}}</div>
                   </div>
                 </div>
               </td>
               <td>
               <div class="flex flex-row px-6 py-2 space-x-4">
-                <div class=" px-3 py-3 whitespace-nowrap bg-blue-800 text-white rounded-full w-max">666</div>
-                <div class="px-3 py-3 whitespace-nowrap bg-red-600 text-white rounded-full w-max">666</div>
+                <div class=" px-3 py-3 whitespace-nowrap bg-blue-800 text-white rounded-full w-max">{{rider.plate}}</div>
+                <div class="px-3 py-3 whitespace-nowrap bg-red-600 text-white rounded-full w-max">{{rider.plate}}</div>
               </div>
               </td>
             </tr>
