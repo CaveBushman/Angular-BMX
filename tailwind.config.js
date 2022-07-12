@@ -1,8 +1,10 @@
 module.exports = {
-  content: ["./src/**/*.{html,ts}"],
+  content: ["./src/**/*.{html,ts}", "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {},
-  },
+  },  
   darkMode: "media",
-  plugins: [],
+  plugins: [
+    require("flowbite/plugin"),
+  ],
 };
