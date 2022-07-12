@@ -18,14 +18,15 @@
       <div class="flex flex-row mx-auto space-x-5 mb-6">
         <div class="col-sm w-full">
           <input
+            [(ngModel)]="lastNameSearch"
             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:dark"
-            type="text" placeholder="Napiš příjmení jezdce" aria-label="default input example"
-            onkeyup="searchByLastName()" id="inputLastName" />
+            type="text" placeholder="Napiš příjmení jezdce" aria-label="default input example" id="inputLastName" />
         </div>
         <div class="col-sm w-full">
           <input
+            [(ngModel)]="clubSearch"
             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:dark"
-            type="text" placeholder="Napiš jméno klubu" aria-label="default input example" onkeyup="searchByClub()"
+            type="text" placeholder="Napiš jméno klubu" aria-label="default input example"
             id="inputClub" />
         </div>
       </div>

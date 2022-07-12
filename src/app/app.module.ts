@@ -28,6 +28,7 @@ import { NewsPaginationsComponent } from './components//news/news-paginations/ne
 import { HttpClientModule } from '@angular/common/http';
 import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
 import { SafePipe } from './pipes/safe.pipe';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { SafePipe } from './pipes/safe.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [Title],
   bootstrap: [AppComponent]

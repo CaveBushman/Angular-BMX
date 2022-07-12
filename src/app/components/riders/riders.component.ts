@@ -9,7 +9,9 @@ import { RidersService } from 'src/app/services/riders.service';
 })
 export class RidersComponent implements OnInit {
 
-  riders: any = [];
+  _riders: any = [];
+  lastNameSearch: string = ''
+  clubSearch: string = ''
 
   public constructor(private titleService: Title, private ridersService: RidersService) {
     this.titleService.setTitle('Seznam jezdců');
@@ -18,8 +20,13 @@ export class RidersComponent implements OnInit {
 
   ngOnInit(): void {
     this.ridersService.getRiders().subscribe((response: any) => {
-      this.riders = response.data;
-      console.log(this.riders);
+      this._riders = response.data;
+      console.log(this._riders);
     })
   }
+
+  get riders() {
+    return this._riders.filter((rider: { lastName: string; club: { name: string; }; }) => rider.lastName.toLowerCase().includes(this.lastNameSearch.toLowerCase()) && rider.club.name.toLowerCase().includes(this.clubSearch.toLowerCase()))
+  }
+
 }
