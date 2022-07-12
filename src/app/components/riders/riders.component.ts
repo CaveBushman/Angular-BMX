@@ -26,7 +26,7 @@ export class RidersComponent implements OnInit {
   }
 
   get riders() {
-    return this._riders.filter((rider: { lastName: string; club: { name: string; }; }) => rider.lastName.toLowerCase().includes(this.lastNameSearch.toLowerCase()) && rider.club.name.toLowerCase().includes(this.clubSearch.toLowerCase()))
+    return this._riders.filter((rider: { lastName: string; club: { name: string; }; }) => rider.lastName.toLowerCase().includes(this.lastNameSearch.toLowerCase().trim()) && rider.club.name.toLowerCase().includes(this.clubSearch.toLowerCase().trim()))
   }
 
 }
