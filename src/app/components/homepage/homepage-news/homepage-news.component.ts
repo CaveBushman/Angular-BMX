@@ -16,6 +16,7 @@ export class HomepageNewsComponent implements OnInit {
 
     this.newsService.getHomepageNews().subscribe((response: any) => {
       this.news = response.data;
+      console.log(this.news);
     });
 
   }

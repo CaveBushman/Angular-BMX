@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -9,14 +10,18 @@ import { Title } from '@angular/platform-browser';
 export class NewsComponent implements OnInit {
   title: string = 'Novinky ze světa BMX';
 
-  news = {
-    title: 'Národní dresy',
-    content: 'Zde bude text',
-  };
+  news: any = [];
 
-  public constructor(private titleService: Title) {
+  public constructor(private titleService: Title, private newsService: NewsService) {
     this.titleService.setTitle('Novinky');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+        this.newsService.getPublished().subscribe((response: any) => {
+          this.news = response.data;
+          console.log(this.news);
+        });
+
+  }
 }

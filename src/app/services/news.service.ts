@@ -12,4 +12,8 @@ export class NewsService {
   getHomepageNews() {
     return this.http.get(this.URL + 'homepage');
   }
+
+  getPublished() {
+    return this.http.get(this.URL + 'published');
+  }
 }
