@@ -15,6 +15,10 @@ export class RidersService {
     return this.http.get(this.URL);
   }
 
+  getRider(id:string) {
+    return this.http.get(this.URL+id);
+  }
+
   getCount() {
     return this.http.get(this.URL+"count")
   }

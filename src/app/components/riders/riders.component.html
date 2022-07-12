@@ -11,7 +11,7 @@
 
       <a href="#" class="btn--red text-sm md:text-lg">Administrace jezdců</a>
 
-      <a href="#" class="btn btn--green text-sm md:text-lg">Požádat o startovní číslo</a>
+      <a routerLink="/riders-new" class="btn btn--green text-sm md:text-lg">Požádat o startovní číslo</a>
     </div>
 
     <div class="search" style="margin-top: 2rem">
@@ -60,7 +60,7 @@
               </thead>
               <tbody class="dark:dark divide-y divide-gray-200">
 
-                <tr *ngFor="let rider of riders" onclick="window.location='#';" class="" style='cursor: pointer;'>
+                <tr *ngFor="let rider of riders" [routerLink]="'/riders/'+ rider._id" class="" style='cursor: pointer;'>
                   <td class="px-6 py-2 whitespace-nowrap">
                     <div class="flex items-center">
                       <div class="relative">

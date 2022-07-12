@@ -27,7 +27,7 @@ import { HomepageNewsComponent } from './components//homepage/homepage-news/home
 import { NewsPaginationsComponent } from './components//news/news-paginations/news-paginations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
-import { SafePipe } from './pipes/safe.pipe';
+import { SafeMessagePipe } from './pipes/safe.pipe';
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -56,7 +56,7 @@ import {FormsModule} from "@angular/forms";
     HomepageNewsComponent,
     NewsPaginationsComponent,
     RidersAdminComponent,
-    SafePipe
+    SafeMessagePipe,
   ],
   imports: [
     BrowserModule,

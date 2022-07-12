@@ -9,16 +9,14 @@ import {
 } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'safe',
+  name: 'safeMessage',
 })
-export class SafePipe implements PipeTransform {
+export class SafeMessagePipe implements PipeTransform {
   constructor(protected sanitizer: DomSanitizer) {}
 
-  public transform(
-    value: any,
-    type: string
-  ): SafeHtml | SafeStyle | SafeScript | SafeUrl | SafeResourceUrl {
-    switch (type) {
+  transform(value: any, args: any): any {
+    console.log('safeMessage pipe');
+    switch (args) {
       case 'html':
         return this.sanitizer.bypassSecurityTrustHtml(value);
       case 'style':
@@ -30,7 +28,7 @@ export class SafePipe implements PipeTransform {
       case 'resourceUrl':
         return this.sanitizer.bypassSecurityTrustResourceUrl(value);
       default:
-        throw new Error(`Invalid safe type specified: ${type}`);
+        console.log('Invalid safe type specified');
     }
   }
 }

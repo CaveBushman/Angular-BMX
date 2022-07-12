@@ -1,1 +1,180 @@
-<p>rider-detail works!</p>
+<header class="shadow dark:dark">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-header">Detail jezdce</h1>
+  </div>
+</header>
+
+<div class="max-w-screen-2xl mx-auto">
+
+  <!-- <img class = "rider-detail-background-image" src="{% static 'images/homepage/bg2.jpg' %}" alt=""> -->
+  <div class="mt-6">
+    <div class="grid grid-cols-3 bd-highlight justify-center">
+      <div class="p-2 flex justify-end items-end bd-highlight rounded-full font-bold text-xl">
+
+        <div class="bg-blue-700 text-white p-8 rounded-full">
+          {{rider.plate}}
+        </div>
+
+        <div class="bg-gray-500 text-black p-8 rounded-full">
+          {{rider.plate}}
+        </div>
+
+        <div class="bg-yellow-300 text-black p-8 rounded-full">
+          {{rider.plate}}
+        </div>
+
+        <div class="bg-black text-white p-8 rounded-full">
+          {{rider.plate}}
+        </div>
+
+        <div class="bg-white text-black border-2 p-8 rounded-full">
+          {{rider.plate}}
+        </div>
+
+        <div class=""></div>
+
+      </div>
+      <div class="p-2 bd-highlight">
+        <div class="flex">
+          <img src='assets/images/riders/{{rider.photo}}' class="w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80 rounded-full mx-auto" />
+        </div>
+
+      </div>
+      <div class="space-x-4 p-2 bd-highlight flex justify-start items-end">
+
+        <div class="bg-red-600 rounded-full text-white p-8 font-bold text-xl">{{rider.plate}}</div>
+
+        <div class=""></div>
+
+      </div>
+    </div>
+    <h1 class="text-4xl text-center dark:text-purple-300 mt-4" style="margin-bottom: 3rem">
+      {{ rider.firstName|uppercase}} {{ rider.lastName|uppercase}}
+    </h1>
+
+    <div class="flex flex-row bd-highlight mb-3">
+      <div class="p-0 bd-highlight dark:text-gray-200 mx-auto" style="margin-bottom: 1rem;">
+        <h5><span class="repre">Člen národní reprezentace</span></h5>
+      </div>
+    </div>
+
+    <div class="flex flex-row bd-highlight mb-3 ">
+      <div class="p-0 bd-highlight mx-auto" style="margin-bottom: 1rem;">
+        <h5><span class="repre">Člen národního talent teamu</span></h5>
+      </div>
+    </div>
+
+
+    <div class="container dark:text-gray-200">
+      <div class="container">
+        <div class="grid grid-cols-2 text-center">
+          <div class="">
+            <h5>UCI ID: <b>{{rider.uciid}}</b></h5>
+          </div>
+          <div class="">
+            <h5>Klub: <b>{{ rider.club.name }}</b></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="grid grid-cols-2 text-center mt-2">
+          <div class="">
+            <h5>Transpondér pro 20": <b>
+
+
+
+                {{rider.transponder20}}
+
+              </b></h5>
+          </div>
+          <div class="">
+            <h5>Transpondér pro 24": <b>
+
+                {{rider.transponder24}}
+
+              </b></h5>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="grid grid-cols-2 text-center mt-4">
+          <div class="">
+            <h5>Pořadí v rankingu v <b>{{rider.class20}}</b> (20"): <b>
+
+                nejezdí/neboduje
+
+                . místo
+
+              </b></h5>
+          </div>
+          <div class="">
+            <h5>Pořadí v rankingu v <b>{{rider.class24}}</b> (24"): <b>
+
+                . místo
+              </b></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-3xl text-center rider-detail-header dark:text-purple-300" style="margin-bottom: 2rem">
+    Umístění za poslední rok
+  </h3>
+
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <p class="mt-2 ml-8 text-sm text-gray-700 dark:text-gray-300">Fialová barva v tabulce označuje bodované závody
+          na 20-ti palových kolech, modrá na cruiserech, bílá označuje závody, které se do rankingu nezapočítají.
+          Tabulku pro přidělování bodů najdete <a href="{% url 'event:ranking-table' %}">ZDE</a></p>
+      </div>
+
+    </div>
+    <div class="mx-4 mt-8 mb-6 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-300">
+        <thead class="bg-gray-50">
+          <tr>
+            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datum</th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Závod
+            </th>
+            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">
+              Pořadatel</th>
+            <th scope="col" class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Typ
+              závodu</th>
+            <th scope="col" class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+              Kategorie</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Umístění</th>
+            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Počet bodů</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 bg-white dark:text-gray-600">
+          <tr class="bg-purple-100 text-gray-600 dark:bg-purple-600 dark:text-white">
+          <tr class="bg-blue-100 text-gray-600 dark:text-white dark:bg-blue-800">
+          <tr>
+            <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium sm:w-auto sm:max-w-none sm:pl-6">
+
+              <dl class="font-normal lg:hidden">
+                <dt class="sr-only">Title</dt>
+                <dd class="mt-1 truncate "></dd>
+                <dt class="sr-only sm:hidden">Organizátor</dt>
+                <dd class="mt-1 truncate  sm:hidden"></dd>
+              </dl>
+            </td>
+            <td class="hidden px-3 py-4 text-sm lg:table-cell"></td>
+            <td class="hidden px-3 py-4 text-sm sm:table-cell"></td>
+            <td class="hidden md:table-cell px-3 py-4 text-sm"></td>
+            <td class="hidden md:table-cell px-3 py-4 text-sm"></td>
+            <td class="px-3 py-4 text-sm">. místo</td>
+            <td class="px-3 py-4 text-sm"></td>
+          </tr>
+          <!-- More people... -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="text-center text-xl mb-6 dark:text-gray-200">Jezdec/jezdkyně nejel/a za poslední rok žádný závod.</div>
+</div>
+
