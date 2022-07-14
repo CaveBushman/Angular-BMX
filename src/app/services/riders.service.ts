@@ -20,6 +20,10 @@ export class RidersService {
     return this.http.get(this.URL + id);
   }
 
+  getRiderByUciid(uciid: number) {
+    return this.http.get(this.URL + "/uciid/" + uciid)
+  }
+
   getCount() {
     return this.http.get(this.URL + 'count');
   }
