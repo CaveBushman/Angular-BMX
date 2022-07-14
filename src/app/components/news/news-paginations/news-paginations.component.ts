@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-news-paginations',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsPaginationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private newsService: NewsService) { }
+
+  count: number = 0;
 
   ngOnInit(): void {
+
+
+    this.newsService.getCount().subscribe((response: any) => {
+      this.count = response.data;
+    });
+
   }
 
 }

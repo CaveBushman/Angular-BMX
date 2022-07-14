@@ -33,7 +33,7 @@
           <tr *ngFor="let club of clubs">
             <td
               class="w-1/2 max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:dark sm:w-auto sm:max-w-none sm:pl-6">
-              <a href="{% url 'club:club-detail' club.id %}">
+              <a [routerLink]="'/clubs/'+ club._id">
                 {{club.name | uppercase }}</a>
               <dl class="font-normal lg:hidden">
                 <dt class="sr-only">Title</dt>

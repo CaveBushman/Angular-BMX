@@ -15,13 +15,10 @@ export class NewsComponent implements OnInit {
   public constructor(private titleService: Title, private newsService: NewsService) {
     this.titleService.setTitle('Novinky');
   }
-
   ngOnInit(): void {
 
         this.newsService.getPublished().subscribe((response: any) => {
           this.news = response.data;
-          console.log(this.news);
         });
-
   }
 }

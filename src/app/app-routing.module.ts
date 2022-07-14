@@ -10,18 +10,26 @@ import { RidersComponent } from './components//riders/riders.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { RiderDetailComponent } from './components/riders/rider-detail/rider-detail.component';
 import { RiderNewComponent } from './components/riders/rider-new/rider-new.component';
+import { NewsDetailComponent } from './components/news/news-detail/news-detail.component';
+import { ClubDetailComponent } from './components/clubs/club-detail/club-detail.component';
+import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
+import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: 'events', component: EventsComponent },
+  { path: `events/:id`, component: EventDetailComponent },
   { path: 'riders', component: RidersComponent },
   { path: 'riders/:id', component: RiderDetailComponent },
-  { path: 'riders-new', component: RiderNewComponent},
+  { path: 'riders-new', component: RiderNewComponent },
+  { path: `riders-admin`, component: RidersAdminComponent},
   { path: 'clubs', component: ClubsComponent },
+  { path: `clubs/:id`, component: ClubDetailComponent },
   { path: 'rankings', component: RankingsComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'rules', component: RulesComponent}
+  { path: `news/:id`, component: NewsDetailComponent },
+  { path: 'rules', component: RulesComponent }
 ];
 
 @NgModule({

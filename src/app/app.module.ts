@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -29,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
 import { SafeMessagePipe } from './pipes/safe.pipe';
 import {FormsModule} from "@angular/forms";
+import { RiderNew3Component } from './components/riders/rider-new3/rider-new3.component';
+import { RiderNew2Component } from './components/riders/rider-new2/rider-new2.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,8 @@ import {FormsModule} from "@angular/forms";
     NewsPaginationsComponent,
     RidersAdminComponent,
     SafeMessagePipe,
+    RiderNew3Component,
+    RiderNew2Component,
   ],
   imports: [
     BrowserModule,

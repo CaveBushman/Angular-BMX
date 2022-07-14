@@ -16,4 +16,8 @@ export class NewsService {
   getPublished() {
     return this.http.get(this.URL + 'published');
   }
+
+  getCount() {
+    return this.http.get(this.URL + `count`);
+  }
 }
