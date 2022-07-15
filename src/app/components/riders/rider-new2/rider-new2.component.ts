@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rider-new2',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rider-new2.component.css']
 })
 export class RiderNew2Component implements OnInit {
+  @Input()
+  rider!: any
 
   constructor() { }
 

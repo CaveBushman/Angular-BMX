@@ -30,6 +30,7 @@ import { SafeMessagePipe } from './pipes/safe.pipe';
 import {FormsModule} from "@angular/forms";
 import { RiderNew3Component } from './components/riders/rider-new3/rider-new3.component';
 import { RiderNew2Component } from './components/riders/rider-new2/rider-new2.component';
+import { RiderNew1Component } from './components/riders/rider-new1/rider-new1.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { RiderNew2Component } from './components/riders/rider-new2/rider-new2.co
     SafeMessagePipe,
     RiderNew3Component,
     RiderNew2Component,
+    RiderNew1Component,
   ],
   imports: [
     BrowserModule,
