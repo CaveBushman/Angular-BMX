@@ -41,6 +41,15 @@ export class UsersService {
     }))
   }
 
+  get user() {
+    return this._authData.asObservable().pipe(map(authData => {
+      if(authData) {
+        return authData.user
+      }
+      return null
+    }))
+  }
+
   signup() {
     throw new Error('Not implemented')
     const body = {
