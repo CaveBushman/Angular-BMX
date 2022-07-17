@@ -38,6 +38,7 @@ import { DropdownComponent } from './components/utils/dropdown/dropdown.componen
 import { RegistrationsComponent } from './components/events/registrations/registrations.component';
 import { ProgressbarComponent } from './components/utils/progressbar/progressbar.component';
 import { EventAdminComponent } from './components/events/event-admin/event-admin.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { EventAdminComponent } from './components/events/event-admin/event-admin
     RegistrationsComponent,
     ProgressbarComponent,
     EventAdminComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

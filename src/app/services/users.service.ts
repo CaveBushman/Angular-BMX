@@ -1,37 +1,73 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
-import { tap } from "rxjs/operators";
-import { BehaviorSubject } from 'rxjs';
+import { tap, map } from "rxjs/operators";
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IUser } from '../models/iuser';
+
+
+export interface IAuthData {
+  user: IUser
+  token: string
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService implements OnDestroy{
+export class UsersService {
 
   private URL = 'http://localhost:3000/api/v1/users/';
 
-  private _user = new BehaviorSubject<IUser | null>(null)
+  private _authData = new BehaviorSubject<IAuthData | null>(null)
 
   isUserLogin: boolean = true
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  ngOnDestroy(): void {
+  get isUserAuthenticated() {
+    return this._authData.asObservable().pipe(map(authData => {
+      if(!authData) {
+        return false
+      }
+      return !!authData.token
+    }))
+  }
+
+  get token() {
+    return this._authData.asObservable().pipe(map(authData => {
+      if(authData) {
+        return authData.token
+      }
+      return null
+    }))
+  }
+
+  signup() {
+    throw new Error('Not implemented')
+    const body = {
+
+    }
+    return
   }
 
   login(email: string, password: string) {
     const body = { email, password }
-    return this.http.post<any>(this.URL+'login', body).pipe(tap(data => {
-      
+    return this.http.post<IAuthData>(this.URL+'login', body).pipe(tap(data => {
+      this.setUserData(data)
     }))
+  }
+
+  logout() {
+    this._authData.next(null)
   }
 
   getUserLogin() {
     return this.isUserLogin
   }
 
-  private setUserData(userData: any) {
-    
+  private setUserData(userData: IAuthData) {
+    this._authData.asObservable().subscribe(data => {
+      console.log(data);
+    })
+    this._authData.next(userData)
   }
 }
