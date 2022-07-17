@@ -17,6 +17,7 @@ import { RidersAdminComponent } from './components/riders/riders-admin/riders-ad
 import { RiderNew3Component } from './components/riders/rider-new3/rider-new3.component';
 import { RegistrationsComponent } from './components/events/registrations/registrations.component';
 import { EventAdminComponent } from './components/events/event-admin/event-admin.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'rankings', component: RankingsComponent },
   { path: 'news', component: NewsComponent },
   { path: `news/:id`, component: NewsDetailComponent },
-  { path: 'rules', component: RulesComponent }
+  { path: 'rules', component: RulesComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
