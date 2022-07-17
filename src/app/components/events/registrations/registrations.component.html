@@ -1,0 +1,102 @@
+<form method="POST" class="mx-9">
+  <header *ngIf="!isEventLoading" class="shadow bg-white dark:dark">
+    <div class="fixed ml-0 p-0 w-full mx-auto py-2 bg-white dark:dark">
+      <div class="flex justify-between max-w-7xl text-3xl mx-auto font-bold my-4">
+        <div>Přihlášení na: {{event.name}}</div>
+        <div>
+          <a href="{% url 'event:entry-foreign' event.id %}" class="text-md btn--yellow" id="">
+            Entry form for no CZE riders
+          </a>
+          <button type="submit" class="text-md btn--green" id="">
+            Přidat
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div *ngIf="!isEventLoading" class="max-w-7xl mx-auto dark:dark--text pt-32">
+    <div class="text-2xl ">Datum konání: <b>{{event.date | date: 'dd.MM.yyyy'}}</b></div>
+  </div>
+
+  <br>
+
+  <div *ngIf="!isLoading" class="search" style="margin-top: 2rem">
+    <div class="flex flex-row mx-auto space-x-5 mb-6">
+      <div class="col-sm w-full">
+        <input [(ngModel)]="lastNameSearch" name="lastNameSearch"
+          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:dark"
+          type="text" placeholder="Napiš příjmení jezdce" aria-label="default input example" id="inputLastName" />
+      </div>
+      <div class="col-sm w-full">
+        <input [(ngModel)]="clubSearch" name="clubSearch"
+          class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:dark"
+          type="text" placeholder="Napiš jméno klubu" aria-label="default input example" id="inputClub" />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isRidersLoading"
+    class="-mx-4 mt-4 mb-6 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+    <table class="min-w-full divide-y divide-gray-300" id="myTable">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-sm font-semibold text-gray-900 dark:dark sm:pl-6 text-center">
+            Start.č.</th>
+          <th scope="col" class="dark:dark"></th>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:dark sm:pl-6">
+            Příjmení</th>
+          <th scope="col"
+            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:dark lg:table-cell">Jméno
+          </th>
+          <th scope="col"
+            class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:dark sm:table-cell">Klub</th>
+          <th scope="col"
+            class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:dark">UCI ID
+          </th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:dark">20"</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:dark">24" (Cruiser)
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <tr *ngFor="let rider of riders">
+          <td class="mt-1 truncate text-gray-700 dark:dark text-center">{{rider.plate}}</td>
+          <td class="dark:dark"><img class="rounded-full img-fluid rounded-circle dark:dark"
+              src="assets/images/riders/{{rider.photo}}" alt="" sizes="6px" srcset=""
+              style="width: 2rem; height: 2rem;"></td>
+          <td
+            class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 dark:dark sm:w-auto sm:max-w-none sm:pl-6">
+            {{rider.lastName | uppercase}}
+            <dl class="font-normal lg:hidden">
+              <dt class="sr-only">Title</dt>
+              <dd class="mt-1 truncate text-gray-700 dark:dark">{{rider.firstName}}</dd>
+              <dt class="sr-only sm:hidden">Email</dt>
+              <dd class="mt-1 truncate text-gray-500 dark:dark sm:hidden">{{rider.club.name | uppercase}}</dd>
+            </dl>
+          </td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 dark:dark lg:table-cell">{{rider.firstName}}</td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 dark:dark sm:table-cell">{{rider.club.name | uppercase}}
+          </td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 dark:dark md:table-cell">{{rider.uciid}}</td>
+          <td class="mt-1 text-sm truncate text-gray-700 dark:dark">
+            <input class="" type="checkbox" value="{{rider.uciid}}" id="checkbox_20" name="checkbox_20" />
+            {{rider.class20}}
+          </td>
+          <td class="mt-1 text-sm truncate text-gray-700 dark:dark">
+            <input class="" type="checkbox" value="{{rider.uciid}}" id="checkbox_24" name="checkbox_24" />
+            {{rider.class24}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a href="#" class="arrow" id="to-top"><i class="bi bi-arrow-up-square-fill"></i></a>
+</form>
+
+<app-modal-alert [(isVisible)]="showModal" [close]="false">
+  <div title>Připravuji kategorie pro závod</div>
+  <app-progressbar message [max]="max" [number]="statusNumber"></app-progressbar>
+</app-modal-alert>

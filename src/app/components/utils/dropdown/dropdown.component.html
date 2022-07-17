@@ -1,0 +1,8 @@
+<div class="dropdown-main w-full relative">
+  <div #showBtn (click)="toggleMenu()">
+    <ng-content select="[button]"></ng-content>
+  </div>
+  <div *ngIf="isMenuVisible" class="right-0 absolute z-10 py-10 px-5 w-64 bg-white shadow-xl rounded-lg">
+    <ng-content select="[content]" *ngIf="isMenuVisible"></ng-content>
+  </div>
+</div>

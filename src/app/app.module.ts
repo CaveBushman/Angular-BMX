@@ -31,6 +31,12 @@ import {FormsModule} from "@angular/forms";
 import { RiderNew3Component } from './components/riders/rider-new3/rider-new3.component';
 import { RiderNew2Component } from './components/riders/rider-new2/rider-new2.component';
 import { RiderNew1Component } from './components/riders/rider-new1/rider-new1.component';
+import { ModalAlertComponent } from './components/utils/modal-alert/modal-alert.component';
+import { RiderEventsTableComponent } from './components/riders/rider-detail/rider-events-table/rider-events-table.component';
+import { EventsListTableComponent } from './components/events/events-list-table/events-list-table.component';
+import { DropdownComponent } from './components/utils/dropdown/dropdown.component';
+import { RegistrationsComponent } from './components/events/registrations/registrations.component';
+import { ProgressbarComponent } from './components/utils/progressbar/progressbar.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +68,12 @@ import { RiderNew1Component } from './components/riders/rider-new1/rider-new1.co
     RiderNew3Component,
     RiderNew2Component,
     RiderNew1Component,
+    ModalAlertComponent,
+    RiderEventsTableComponent,
+    EventsListTableComponent,
+    DropdownComponent,
+    RegistrationsComponent,
+    ProgressbarComponent,
   ],
   imports: [
     BrowserModule,

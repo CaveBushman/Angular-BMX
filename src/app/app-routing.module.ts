@@ -14,15 +14,19 @@ import { NewsDetailComponent } from './components/news/news-detail/news-detail.c
 import { ClubDetailComponent } from './components/clubs/club-detail/club-detail.component';
 import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
 import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
+import { RiderNew3Component } from './components/riders/rider-new3/rider-new3.component';
+import { RegistrationsComponent } from './components/events/registrations/registrations.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: 'events', component: EventsComponent },
   { path: `events/:id`, component: EventDetailComponent },
+  { path: 'events/entry/:id', component: RegistrationsComponent},
   { path: 'riders', component: RidersComponent },
   { path: 'riders/:id', component: RiderDetailComponent },
-  { path: 'riders-new', component: RiderNewComponent },
+  { path: 'rider-new', component: RiderNewComponent },
+  { path: `rider-new-3`, component: RiderNew3Component},
   { path: `riders-admin`, component: RidersAdminComponent},
   { path: 'clubs', component: ClubsComponent },
   { path: `clubs/:id`, component: ClubDetailComponent },

@@ -1,1 +1,111 @@
-<p>event-detail works!</p>
+<header class="shadow dark:dark">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-header">{{event.name | uppercase}}</h1>
+  </div>
+</header>
+
+<div class="mx-10 mt-6">
+  <div class="flex flex-row-reverse ">
+
+
+    <div class="btn--green flex items-center">
+      <div>Výsledky </div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+      </svg>
+    </div>
+
+
+    <div class="p-2 "><a href="#" class="btn--yellow" tabindex="-1" role="button"
+        aria-disabled="true">Přihlášení jezdci</a></div>
+
+
+    <div class="p-2 "><a href="#" class="btn--red" tabindex="-1" role="button"
+        aria-disabled="true">Administrace závodu</a></div>
+
+  </div>
+
+  <div class="shadow-lg rounded-2xl px-12 pb-2">
+
+    <div class="flex flex-row mt-4 py-4 dark:dark overflow-hidden sm:rounded-md">
+      <p class="text-3xl px-4 sm:px-6 lg:px-8 text-indigo-600 dark:dark basis-1/2">{{event.date | date: 'dd.MM.yyyy'}}</p>
+      <p class="text-3xl px-4 sm:px-6 lg:px-8 text-indigo-600 dark:dark basis-1/2">{{event.organizer.name|uppercase}}</p>
+    </div>
+
+    <div class="alert alert-danger h4 text-center" role="alert" *ngIf="event.canceled">
+      POZOR! Závod je zrušen.
+    </div>
+
+
+
+    <!-- Rozhodčí -->
+    <div class="mt-4 px-4 sm:px-6 lg:px-8 text-3xl dark:dark">Rozhodčí</div>
+    <div class="mt-4 dark:dark overflow-hidden sm:rounded-md">
+      <ul role="list" class="divide-y divide-gray-200">
+        <li>
+          <a href="#" class="block hover:bg-gray-50">
+            <div class="flex items-center px-4 py-4 sm:px-6">
+              <div class="min-w-0 flex-1 flex items-center">
+                <!-- PCP -->
+                <div class="flex-shrink-0">
+                  <img class="h-12 w-12 rounded-full" src="" alt="">
+                </div>
+                <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                  <div>
+                    <p class="text-sm font-medium text-indigo-600 truncate">{{event.pcp}}</p>
+                    <p class="mt-2 flex items-center text-sm text-gray-500">
+                      <span class="truncate"></span>
+                    </p>
+                  </div>
+                </div>
+                <!-- PCP asist -->
+                <div class="flex-shrink-0">
+                  <img class="h-12 w-12 rounded-full" src="" alt="">
+                </div>
+                <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                  <div>
+                    <p class="text-sm font-medium text-indigo-600 truncate">{{event.apcp}}</p>
+                    <p class="mt-2 flex items-center text-sm text-gray-500">
+                      <span class="truncate">{{event.apcp}}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex flex-row mb-4">
+      <div class="basis-1/2">
+        <!-- Registrace -->
+        <div class="mt-4 px-4 sm:px-6 lg:px-8 text-3xl dark:dark--text ">On-line registrace</div>
+
+        <div class="bg-white overflow-hidden sm:rounded-md mt-2">
+          <div class="text-lg px-4 sm:px-6 lg:px-8 text-gray-600 dark:dark basis-1/2">otevřena do
+            {{event.regOpenTo}} hod.</div>
+        </div>
+
+        <div class="text-lg px-4 sm:px-6 lg:px-8 text-gray-600 dark:dark basis-1/2">Registrace nebyla otevřena nebo už
+          byla ukončena</div>
+      </div>
+    </div>
+
+    <!--UCI RACE -->
+
+    <div role="alert" *ngIf="event.isUciEvent == true">
+      <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2 mt-4">
+        Upozornění
+      </div>
+      <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+        <p> Tento závod je zapsán v kalendáři UCI, proto Junior, Under 23 a Elite kategorie pojedou
+          podle pravidel UCI a nikoliv podle platných prováděcích pokynů!</p>
+      </div>
+    </div>
+
+
+  </div>
+</div>

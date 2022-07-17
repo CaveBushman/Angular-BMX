@@ -1,0 +1,87 @@
+<div class="px-4 sm:px-6 lg:px-8">
+
+  <div class="-mx-4 mt-8 mb-4 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
+    <table class="min-w-full divide-y divide-gray-300">
+      <thead class="bg-gray-50">
+        <tr>
+          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datum</th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Název
+          </th>
+          <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">
+            Pořadatel</th>
+          <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Druh</th>
+          <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+            <span class="sr-only"></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 bg-white">
+        <tr *ngFor="let event of events" [ngClass]="{'table-blue': event.rankingType == 'Volný závod', 'table-green': event.rankingType == 'Moravská liga' || event.rankingType =='Česká liga', 'table-red': event.rankingType == 'Mistrovství ČR jednolivců' || event.rankingType == 'Mistrovství ČR družstev',
+         'table-purple': event.rankingType == 'Český pohár'} ">
+          <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+            {{event.date | date: 'dd.MM.yyyy'}}
+            <dl class="font-normal lg:hidden">
+              <dt class="sr-only">{{event.name}}</dt>
+              <dd class="mt-1 truncate text-gray-700"><a href="#" class="no-underline">{{event.name}}</a></dd>
+              <dt class="sr-only sm:hidden">{{event.organizer}}</dt>
+              <dd class="mt-1 truncate text-gray-500 sm:hidden">{{event.organizer}}</dd>
+            </dl>
+          </td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell" [routerLink]="'/events/'+ event._id">
+            {{event.name}}</td>
+          <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{{event.organizer.name | uppercase}}</td>
+          <td class="px-3 py-4 text-sm text-gray-500">{{event.rankingType}}</td>
+          <td class="py-2 text-sm font-medium sm:pr-6">
+            <div class="flex flex-col justify-center h-full w-full">
+
+              <div [routerLink]="'/events/entry/'+event._id"
+                class="py-1 w-full my-1 px-4 text-sm font-medium sm:pr-6 btn--yellow blurApp" *ngIf="event.isRegOpen">
+                Přihlásit</div>
+
+              <div class="">
+                <app-dropdown>
+                  <button button
+                    class="dropdown-btn w-full py-1 my-1 px-4 text-sm font-medium sm:pr-6 btn--green">Výsledky</button>
+                  <div content class="dropdown-content ">
+                    <ul>
+                      <li class="border-b-2 p-2 cursor-pointer">
+                        <div>HTML</div>
+                      </li>
+                      <li class="border-b-2 p-2 cursor-pointer">
+                        <div>XML</div>
+                      </li>
+
+                      <li class="border-b-2 p-2 cursor-pointer">
+                        <div>PDF
+                          celkové výsledky</div>
+                      </li>
+
+                      <li class="border-b-2 p-2 cursor-pointer">
+                        <div>PDF
+                          50 nejrychlejších jezdců</div>
+                      </li>
+
+                      <li class="border-b-2 p-2 cursor-pointer" *ngIf="event.resultSeries">
+                        <div>Průběžné
+                          pořadí seriálu</div>
+                      </li>
+
+                    </ul>
+                  </div>
+                </app-dropdown>
+              </div>
+
+              <div href="#" target="_blank" *ngIf="event.proposition"
+                class="py-1 my-1 px-4 text-sm font-medium sm:pr-6 btn--purple">Propozice</div>
+
+              <a href="{% url 'event:event-admin' event.id %}"
+                class="py-1 my-1 px-4 w-full text-sm font-medium sm:pr-6 btn--red">Admin</a>
+
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

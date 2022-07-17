@@ -15,7 +15,7 @@
           {{rider.plate}}
         </div>
 
-        <div  *ngIf="rider.plateColor20 == 'gray' && rider.is20" class="bg-gray-500 text-black p-8 rounded-full">
+        <div *ngIf="rider.plateColor20 == 'gray' && rider.is20" class="bg-gray-500 text-black p-8 rounded-full">
           {{rider.plate}}
         </div>
 
@@ -118,63 +118,6 @@
     </div>
   </div>
 
-  <h3 class="text-3xl text-center rider-detail-header dark:text-purple-300 my-10" >
-    Umístění za poslední rok
-  </h3>
+  <app-rider-events-table></app-rider-events-table>
 
-  <!-- This example requires Tailwind CSS v2.0+ -->
-  <div class="px-4 sm:px-6 lg:px-8">
-    <div class="sm:flex sm:items-center">
-      <div class="sm:flex-auto">
-        <p class="mt-2 ml-8 text-sm text-gray-700 dark:text-gray-300">Fialová barva v tabulce označuje bodované závody
-          na 20-ti palových kolech, modrá na cruiserech, bílá označuje závody, které se do rankingu nezapočítají.
-          Tabulku pro přidělování bodů najdete <a href="{% url 'event:ranking-table' %}">ZDE</a></p>
-      </div>
-
-    </div>
-    <div class="mx-4 mt-8 mb-6 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-lg">
-      <table class="min-w-full divide-y divide-gray-300">
-        <thead class="bg-gray-50">
-          <tr>
-            <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Datum</th>
-            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Závod
-            </th>
-            <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">
-              Pořadatel</th>
-            <th scope="col" class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Typ
-              závodu</th>
-            <th scope="col" class="hidden md:table-cell px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-              Kategorie</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Umístění</th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Počet bodů</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-200 bg-white dark:text-gray-600">
-          <tr class="bg-purple-100 text-gray-600 dark:bg-purple-600 dark:text-white">
-          <tr class="bg-blue-100 text-gray-600 dark:text-white dark:bg-blue-800">
-          <tr>
-            <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium sm:w-auto sm:max-w-none sm:pl-6">
-
-              <dl class="font-normal lg:hidden">
-                <dt class="sr-only">Title</dt>
-                <dd class="mt-1 truncate "></dd>
-                <dt class="sr-only sm:hidden">Organizátor</dt>
-                <dd class="mt-1 truncate  sm:hidden"></dd>
-              </dl>
-            </td>
-            <td class="hidden px-3 py-4 text-sm lg:table-cell"></td>
-            <td class="hidden px-3 py-4 text-sm sm:table-cell"></td>
-            <td class="hidden md:table-cell px-3 py-4 text-sm"></td>
-            <td class="hidden md:table-cell px-3 py-4 text-sm"></td>
-            <td class="px-3 py-4 text-sm">. místo</td>
-            <td class="px-3 py-4 text-sm"></td>
-          </tr>
-          <!-- More people... -->
-        </tbody>
-      </table>
-    </div>
   </div>
-
-  <div class="text-center text-xl mb-6 dark:text-gray-200">Jezdec/jezdkyně nejel/a za poslední rok žádný závod.</div>
-</div>
-

@@ -14,6 +14,10 @@ export class ClubsService {
     return this.http.get(this.URL);
   }
 
+  getClub(id: string) {
+  return this.http.get(this.URL + id)
+}
+
   getCount() {
     return this.http.get(this.URL + "/count")
   }

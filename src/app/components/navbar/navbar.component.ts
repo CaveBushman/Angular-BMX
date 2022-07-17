@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { RidersService } from 'src/app/services/riders.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,9 +15,30 @@ export class NavbarComponent implements OnInit {
   isMobileNavOpen = false;
   isProfileDropdownOpen = false;
 
-  constructor() {}
+  notice: boolean = false;
 
-  ngOnInit(): void {}
+  constructor(private ridersSerice: RidersService) {}
+
+  ngOnInit(): void {
+    this.noticeNewRider();
+    this.checkNotice();
+  }
+
+  checkNotice() {
+    //TODO: dodělat pouze pro ověřené uživatele
+    setInterval(() => {
+      this.noticeNewRider();
+    }, 1000*60*5);
+  }
+
+  noticeNewRider() {
+    console.log("Zjišťuji nového jezdce")
+    this.ridersSerice.getToApprowe().subscribe((response: any) => {
+      if (response.data > 0) {
+        this.notice = true;
+      }
+    });
+  }
 
   toggleMobileNav() {
     this.isMobileNavOpen = !this.isMobileNavOpen;

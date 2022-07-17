@@ -8,10 +8,19 @@ import { Title } from '@angular/platform-browser';
 })
 export class EventsComponent implements OnInit {
   title: string = 'Kalendář závodů';
+  currentYear: number = new Date().getFullYear()
 
   public constructor(private titleService: Title) {
     this.titleService.setTitle('Kalendář závodů');
   }
 
   ngOnInit(): void {}
+
+  nextYear() {
+    this.currentYear++
+  }
+
+  prevYear() {
+    this.currentYear--
+  }
 }

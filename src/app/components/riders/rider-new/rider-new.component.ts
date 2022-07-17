@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rider-new',
@@ -8,7 +8,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 export class RiderNewComponent implements OnInit {
   rider: any = null
   page: number = 1
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,7 +16,9 @@ export class RiderNewComponent implements OnInit {
 
   onNext(rider: any) {
     this.rider = rider
-    this.page = 2
+    this.page = this.page + 1
+    console.log("Page: " + this.page);
+
   }
 
 }

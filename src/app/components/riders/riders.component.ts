@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { IRider } from 'src/app/models/irider';
 import { RidersService } from 'src/app/services/riders.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { RidersService } from 'src/app/services/riders.service';
 })
 export class RidersComponent implements OnInit {
 
-  _riders: any = [];
+  _riders: IRider[] = [];
   lastNameSearch: string = ''
   clubSearch: string = ''
 
@@ -19,7 +20,7 @@ export class RidersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ridersService.getRiders().subscribe((response: any) => {
+    this.ridersService.getValidRiders().subscribe((response: any) => {
       this._riders = response.data;
       console.log(this._riders);
     })

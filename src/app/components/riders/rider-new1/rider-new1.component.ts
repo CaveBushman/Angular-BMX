@@ -50,9 +50,9 @@ export class RiderNew1Component implements OnInit {
   }
 
   onPaste(e: any, last: HTMLInputElement) {
-    let paste = e.clipboardData.getData('text')
-      
-    if(!this.isValidUCIID(paste)) return
+    let paste = e.clipboardData.getData('text');
+
+    if (!this.isValidUCIID(paste)) return;
 
     this.numbers = paste.split('').map((i: string) => +i);
     e.target.blur();
@@ -61,7 +61,7 @@ export class RiderNew1Component implements OnInit {
   onButtonClicked() {
     // složit UCI ID
     this.uciid = parseInt(this.numbers.join(''));
-    if(!this.isValidUCIID(this.uciid+'')) return
+    if (!this.isValidUCIID(this.uciid + '')) return;
 
     // zjistit, zda již není startovní číslo tomuto UCI ID přiděleno
     this.ridersService.getRiderByUciid(this.uciid).subscribe({
@@ -70,25 +70,35 @@ export class RiderNew1Component implements OnInit {
           this.rider = response.data;
           this.message = true;
           this.messageText = `UCI ID: ${this.rider.uciid} je přiděleno jezdci ${this.rider.firstName} ${this.rider.lastName} a ten již má přiděleno startovní číslo ${this.rider.plate}.`;
+          this.hideAlert();
+          return;
         }
       },
-      error: (e) => {},
+      error: (e) => {
+        this.ridersService.getSwagger(this.uciid).subscribe((response: any) => {
+          this.rider = response;
+
+          if (this.rider.length === 0) {
+            this.message = true;
+            this.messageText = 'Toto UCI ID neexistuje.';
+            this.hideAlert();
+            return;
+          }
+          if (this.rider[0].Nationality !== 'CZE') {
+            this.message = true;
+            this.messageText =
+              'Držitel tohoto UCI ID nemá českou národnost. Pokud jste cizinec a chcete mít české startovní číslo, kontaktujte Komisi BMX Českého svazu cyklisitky.';
+            this.hideAlert();
+            return;
+          }
+
+          // bindnout data na další stránku
+          this.next.emit(this.rider[0]);
+        });
+      },
     });
 
     // zjistit, zda nejde o cizince
-    this.ridersService.getSwagger(this.uciid).subscribe((response: any) => {
-      this.rider = response;
-     
-      if (this.rider[0].Nationality !== 'CZE') {
-        this.message = true;
-        this.messageText =
-          'Držitel tohoto UCI ID nemá českou národnost. Pokud jste cizinec a chcete mít české startovní číslo, kontaktujte Komisi BMX Českého svazu cyklisitky.';
-        return;
-      }
-
-       // bindnout data na další stránku
-      this.next.emit(this.rider[0]);
-    });
   }
 
   private isValidUCIID(uciid: string): boolean {
@@ -99,5 +109,9 @@ export class RiderNew1Component implements OnInit {
         .map((i) => +i)
         .every((i) => !isNaN(i) && i !== undefined) && uciid.length === 11
     );
+  }
+
+  private hideAlert() {
+    setTimeout(() => (this.message = false), 5000);
   }
 }

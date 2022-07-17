@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RidersService } from 'src/app/services/riders.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { IRider } from 'src/app/models/irider';
 
 @Component({
   selector: 'app-rider-detail',
@@ -16,7 +17,7 @@ export class RiderDetailComponent implements OnInit {
     this.titleService.setTitle('Detail jezdce');
   }
 
-  rider: any = [];
+  rider!: IRider;
 
   ngOnInit(): void {
 
