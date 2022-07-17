@@ -74,8 +74,8 @@
               <div href="#" target="_blank" *ngIf="event.proposition"
                 class="py-1 my-1 px-4 text-sm font-medium sm:pr-6 btn--purple">Propozice</div>
 
-              <a href="{% url 'event:event-admin' event.id %}"
-                class="py-1 my-1 px-4 w-full text-sm font-medium sm:pr-6 btn--red">Admin</a>
+              <div [routerLink]="'/events/admin/'+ event._id"
+                class="py-1 my-1 px-4 w-full text-sm font-medium sm:pr-6 btn--red">Admin</div>
 
             </div>
           </td>

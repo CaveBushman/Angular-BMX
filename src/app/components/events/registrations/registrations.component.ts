@@ -40,18 +40,17 @@ export class RegistrationsComponent implements OnInit {
       this.isEventLoading = false;
     });
 
-    this.ridersService.getRiders().subscribe((response: any) => {
+    this.ridersService.getValidRiders().subscribe((response: any) => {
       this._riders = response.data;
       this.max = this._riders.length;
       this.showModal = true;
-      this.getEventClasses(this.event.eventClasses)
-
+      this.getEventClasses(this.event.eventClasses);
     });
   }
 
   getEventClasses(id: any) {
     this.eventsService.getClassAndFee(id).subscribe((response: any) => {
-      this.eventClasses = response.data
+      this.eventClasses = response.data;
       this._riders.forEach((rider: IRider) => {
         rider.class20 = this.eventsService.setClass20(rider, this.eventClasses);
         rider.class24 = this.eventsService.setClass24(rider, this.eventClasses);
@@ -59,10 +58,8 @@ export class RegistrationsComponent implements OnInit {
       });
       this.isRidersLoading = false;
       this.showModal = false;
-    })
+    });
   }
-
-
 
   get riders() {
     return this._riders.filter(
@@ -78,5 +75,9 @@ export class RegistrationsComponent implements OnInit {
 
   get isLoading() {
     return this.isEventLoading || this.isRidersLoading;
+  }
+
+  addToCard() {
+    console.log("Add To Card button clicked")
   }
 }

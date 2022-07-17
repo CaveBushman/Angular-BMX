@@ -1,0 +1,158 @@
+<header class="shadow dark:dark">
+  <div class="flex">
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-bold text-header">Administrace závodu: {{event.name}}</h1>
+  </div>
+  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <button type="button" (click)="editEvent()"
+      class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Uprav závod</button>
+  </div>
+  </div>
+</header>
+
+<div class="max-w-7xl mx-auto">
+  <!-- This example requires Tailwind CSS v2.0+ -->
+  <div>
+    <dl
+      class="mt-5 grid grid-cols-1 rounded-lg dark:dark overflow-hidden shadow divide-y divide-gray-200 md:grid-cols-3 md:divide-y-0 md:divide-x">
+      <div class="px-4 py-5 sm:p-6">
+        <dt class="text-base font-normal dark:dark">Přihlášeno jezdců</dt>
+        <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
+          <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+            130 jezdců
+          </div>
+        </dd>
+      </div>
+      <div class="px-4 py-5 sm:p-6">
+        <dt class="text-base font-normal dark:dark">Vybrané startovné</dt>
+        <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
+          <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+            0 CZK
+          </div>
+        </dd>
+      </div>
+
+      <div class="px-4 py-5 sm:p-6">
+        <dt class="text-base font-normal dark:dark">Poslat pořadateli</dt>
+        <dd class="mt-1 flex justify-between items-baseline md:block lg:flex">
+          <div class="flex items-baseline text-2xl font-semibold text-indigo-600">
+            0 CZK
+          </div>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<div class="max-w-7xl mx-auto mt-8 grid grid-cols-2 gap-4">
+
+<button type="button" (click)="getEntriesFile()"
+  class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+<!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+<svg class="-ml-1 mr-3 h-10 w-10 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="text-white">
+  <path
+    d="M352 48C352 21.49 373.5 0 400 0C426.5 0 448 21.49 448 48C448 74.51 426.5 96 400 96C373.5 96 352 74.51 352 48zM480 159.1C497.7 159.1 512 174.3 512 191.1C512 209.7 497.7 223.1 480 223.1H416C408.7 223.1 401.7 221.5 396 216.1L355.3 184.4L295 232.9L337.8 261.4C346.7 267.3 352 277.3 352 288V416C352 433.7 337.7 448 320 448C302.3 448 288 433.7 288 416V305.1L227.5 266.8C194.7 245.1 192.5 198.9 223.2 175.2L306.3 110.9C323.8 97.45 348.1 97.58 365.4 111.2L427.2 159.1H480zM256 384C256 454.7 198.7 512 128 512C57.31 512 0 454.7 0 384C0 313.3 57.31 256 128 256C198.7 256 256 313.3 256 384zM128 312C88.24 312 56 344.2 56 384C56 423.8 88.24 456 128 456C167.8 456 200 423.8 200 384C200 344.2 167.8 312 128 312zM640 384C640 454.7 582.7 512 512 512C441.3 512 384 454.7 384 384C384 313.3 441.3 256 512 256C582.7 256 640 313.3 640 384zM512 312C472.2 312 440 344.2 440 384C440 423.8 472.2 456 512 456C551.8 456 584 423.8 584 384C584 344.2 551.8 312 512 312z" />
+</svg>
+  Stáhnout startovku závodu pro BEM
+</button>
+
+<button type="button" (click)="getRidersListFile()"
+  class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+<!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+<svg class="-ml-1 mr-3 h-10 w-10 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="text-white">
+  <path
+    d="M352 48C352 21.49 373.5 0 400 0C426.5 0 448 21.49 448 48C448 74.51 426.5 96 400 96C373.5 96 352 74.51 352 48zM480 159.1C497.7 159.1 512 174.3 512 191.1C512 209.7 497.7 223.1 480 223.1H416C408.7 223.1 401.7 221.5 396 216.1L355.3 184.4L295 232.9L337.8 261.4C346.7 267.3 352 277.3 352 288V416C352 433.7 337.7 448 320 448C302.3 448 288 433.7 288 416V305.1L227.5 266.8C194.7 245.1 192.5 198.9 223.2 175.2L306.3 110.9C323.8 97.45 348.1 97.58 365.4 111.2L427.2 159.1H480zM256 384C256 454.7 198.7 512 128 512C57.31 512 0 454.7 0 384C0 313.3 57.31 256 128 256C198.7 256 256 313.3 256 384zM128 312C88.24 312 56 344.2 56 384C56 423.8 88.24 456 128 456C167.8 456 200 423.8 200 384C200 344.2 167.8 312 128 312zM640 384C640 454.7 582.7 512 512 512C441.3 512 384 454.7 384 384C384 313.3 441.3 256 512 256C582.7 256 640 313.3 640 384zM512 312C472.2 312 440 344.2 440 384C440 423.8 472.2 456 512 456C551.8 456 584 423.8 584 384C584 344.2 551.8 312 512 312z" />
+</svg>
+  Stáhnout Riders list pro BEM
+</button>
+</div>
+
+<div class="max-w-7xl mx-auto mt-8 grid grid-cols-4 gap-4">
+
+<div class="text-xl text-center text-slate-600">Výsledky XLS</div>
+<div class="text-xl text-center text-slate-600">Výsledky PDF</div>
+<div class="text-xl text-center text-slate-600">50 nejrychlejších jezdců</div>
+<div class="text-xl text-center text-slate-600">záloha BEM</div>
+
+</div>
+<div class="max-w-7xl mx-auto mt-4 grid grid-cols-4 gap-4">
+
+<div class="flex justify-center items-center w-full">
+  <label for="dropzone-file"
+    class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+    <div class="flex flex-col justify-center items-center pt-5 pb-6">
+      <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnXLS1}}</span> {{btnXLS2}}</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400">pouze XLS soubor</p>
+    </div>
+    <input id="dropzone-file" type="file" class="hidden">
+  </label>
+</div>
+
+<div class="flex justify-center items-center w-full">
+  <label for="dropzone-file"
+    class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+    <div class="flex flex-col justify-center items-center pt-5 pb-6">
+      <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnPDF1}}</span>{{btnPDF2}}</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400">pouze PDF soubor</p>
+    </div>
+    <input id="dropzone-file" type="file" class="hidden">
+  </label>
+</div>
+
+<div class="flex justify-center items-center w-full">
+  <label for="dropzone-file"
+    class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+    <div class="flex flex-col justify-center items-center pt-5 pb-6">
+      <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnFast1}}</span> {{btnFast2}}</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400">pouze PDF soubor</p>
+    </div>
+    <input id="dropzone-file" type="file" class="hidden">
+  </label>
+</div>
+
+<div class="flex justify-center items-center w-full">
+  <label for="dropzone-file"
+    class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+    <div class="flex flex-col justify-center items-center pt-5 pb-6">
+      <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+      </svg>
+      <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnBEM1}}</span> {{btnBEM2}}</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400">pouze BEM soubor</p>
+    </div>
+    <input id="dropzone-file" type="file" class="hidden">
+  </label>
+</div>
+</div>
+
+<div class="max-w-7xl mx-auto mt-4 grid grid-cols-2 gap-4">
+
+  <div></div>
+
+  <button type="button" (click)="processResults()"
+    class="inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+    <svg class="-ml-1 mr-3 h-10 w-10 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+      <!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+      <path
+        d="M448 416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96C0 60.65 28.65 32 64 32H384C419.3 32 448 60.65 448 96V416zM256 160C256 142.3 241.7 128 224 128H128C110.3 128 96 142.3 96 160C96 177.7 110.3 192 128 192H224C241.7 192 256 177.7 256 160zM128 224C110.3 224 96 238.3 96 256C96 273.7 110.3 288 128 288H320C337.7 288 352 273.7 352 256C352 238.3 337.7 224 320 224H128zM192 352C192 334.3 177.7 320 160 320H128C110.3 320 96 334.3 96 352C96 369.7 110.3 384 128 384H160C177.7 384 192 369.7 192 352z" />
+    </svg>
+    Zpracuj výsledky závodu
+  </button>
+</div>

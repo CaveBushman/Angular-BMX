@@ -37,6 +37,7 @@ import { EventsListTableComponent } from './components/events/events-list-table/
 import { DropdownComponent } from './components/utils/dropdown/dropdown.component';
 import { RegistrationsComponent } from './components/events/registrations/registrations.component';
 import { ProgressbarComponent } from './components/utils/progressbar/progressbar.component';
+import { EventAdminComponent } from './components/events/event-admin/event-admin.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ProgressbarComponent } from './components/utils/progressbar/progressbar
     DropdownComponent,
     RegistrationsComponent,
     ProgressbarComponent,
+    EventAdminComponent,
   ],
   imports: [
     BrowserModule,

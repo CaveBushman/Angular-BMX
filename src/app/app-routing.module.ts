@@ -16,13 +16,15 @@ import { EventDetailComponent } from './components/events/event-detail/event-det
 import { RidersAdminComponent } from './components/riders/riders-admin/riders-admin.component';
 import { RiderNew3Component } from './components/riders/rider-new3/rider-new3.component';
 import { RegistrationsComponent } from './components/events/registrations/registrations.component';
+import { EventAdminComponent } from './components/events/event-admin/event-admin.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'downloads', component: DownloadsComponent },
   { path: 'events', component: EventsComponent },
   { path: `events/:id`, component: EventDetailComponent },
-  { path: 'events/entry/:id', component: RegistrationsComponent},
+  { path: 'events/entry/:id', component: RegistrationsComponent },
+  { path: `events/admin/:id`, component: EventAdminComponent},
   { path: 'riders', component: RidersComponent },
   { path: 'riders/:id', component: RiderDetailComponent },
   { path: 'rider-new', component: RiderNewComponent },

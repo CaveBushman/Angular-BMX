@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { RidersService } from 'src/app/services/riders.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,20 +10,27 @@ import { RidersService } from 'src/app/services/riders.service';
     '(document:click)': 'this.closeProfileDropdown($event)',
   },
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges {
   @ViewChild('profileDropdownBtn') profileDropdownBtn: any;
 
   isMobileNavOpen = false;
   isProfileDropdownOpen = false;
 
+  isUserLogin: boolean = false;
+
   notice: boolean = false;
 
-  constructor(private ridersSerice: RidersService) {}
+  constructor(private ridersSerice: RidersService, private usersService: UsersService) {}
 
   ngOnInit(): void {
     this.noticeNewRider();
     this.checkNotice();
+    this.isUserLogin = this.usersService.getUserLogin()
   }
+
+ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+}
 
   checkNotice() {
     //TODO: dodělat pouze pro ověřené uživatele
