@@ -23,11 +23,15 @@ export class UsersService implements OnDestroy{
   login(email: string, password: string) {
     const body = { email, password }
     return this.http.post<any>(this.URL+'login', body).pipe(tap(data => {
-
+      
     }))
   }
 
   getUserLogin() {
     return this.isUserLogin
+  }
+
+  private setUserData(userData: any) {
+    
   }
 }
