@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { RidersService } from 'src/app/services/riders.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   notice: boolean = false;
 
-  constructor(private ridersSerice: RidersService, private usersService: UsersService) { }
+  constructor(private ridersSerice: RidersService, private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
     this.noticeNewRider();
@@ -66,5 +67,6 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   logout() {
     this.usersService.logout()
+    this.router.navigate(['login'])
   }
 }
