@@ -19,8 +19,6 @@ export class UsersService {
 
   private _authData = new BehaviorSubject<IAuthData | null>(null)
 
-  isUserLogin: boolean = true
-
   constructor(private http: HttpClient) {}
 
   get isUserAuthenticated() {
@@ -66,17 +64,19 @@ export class UsersService {
   }
 
   logout() {
+    localStorage.removeItem('authData')
     this._authData.next(null)
   }
 
-  getUserLogin() {
-    return this.isUserLogin
-  }
+  // autoLogin() {
+  //   const jsonData = localStorage.getItem('authData')
+  //   if(!jsonData) return null
+  //   const parsedData = JSON.parse(jsonData) as IAuthData
+  // }
 
   private setUserData(userData: IAuthData) {
-    this._authData.asObservable().subscribe(data => {
-      console.log(data);
-    })
+    const jsonData = JSON.stringify(userData)
+    localStorage.setItem('authData', jsonData)
     this._authData.next(userData)
   }
 }
