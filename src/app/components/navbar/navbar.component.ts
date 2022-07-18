@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit, OnChanges {
     this.usersService.isUserAuthenticated.subscribe(isAuthenticated => {
       this.isUserLogin = isAuthenticated
     })
+    this.usersService.autoLogin()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
