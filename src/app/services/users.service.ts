@@ -69,7 +69,7 @@ export class UsersService implements OnInit, OnDestroy {
         return of(user)
       }), switchMap((user) => {
         if(!user) return of(false)
-        return of(roles.some(role => user.role.includes(role)) || user.role.includes('superuser'))
+        return of(roles.some(role => user.roles.includes(role)) || user.roles.includes('superuser'))
       })
     )
   }

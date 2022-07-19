@@ -5,6 +5,6 @@ export interface IUser {
   lastName: string,
   email: string,
   photo: string,
-  role: string,
+  roles: string[],
 
 }
