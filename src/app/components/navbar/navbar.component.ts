@@ -1,4 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { RidersService } from 'src/app/services/riders.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -20,23 +21,26 @@ export class NavbarComponent implements OnInit, OnChanges {
 
   notice: boolean = false;
 
-  constructor(private ridersSerice: RidersService, private usersService: UsersService) {}
+  constructor(private ridersSerice: RidersService, private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
     this.noticeNewRider();
     this.checkNotice();
-    this.isUserLogin = this.usersService.getUserLogin()
+    this.usersService.isUserAuthenticated.subscribe(isAuthenticated => {
+      this.isUserLogin = isAuthenticated
+    })
+    this.usersService.autoLogin()
   }
 
-ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     console.log(changes)
-}
+  }
 
   checkNotice() {
     //TODO: dodělat pouze pro ověřené uživatele
     setInterval(() => {
       this.noticeNewRider();
-    }, 1000*60*5);
+    }, 1000 * 60 * 5);
   }
 
   noticeNewRider() {
@@ -59,5 +63,10 @@ ngOnChanges(changes: SimpleChanges): void {
   closeProfileDropdown(event: Event) {
     if (!this.profileDropdownBtn.nativeElement.contains(event.target))
       this.isProfileDropdownOpen = false;
+  }
+
+  logout() {
+    this.usersService.logout()
+    this.router.navigate(['login'])
   }
 }
