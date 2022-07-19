@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200 bg-white">
-        <tr *ngFor="let event of events" [ngClass]="{'table-blue': event.rankingType == 'Volný závod', 'table-green': event.rankingType == 'Moravská liga' || event.rankingType =='Česká liga', 'table-red': event.rankingType == 'Mistrovství ČR jednolivců' || event.rankingType == 'Mistrovství ČR družstev',
+        <tr *ngFor="let event of events" [ngClass]="{'table-blue': event.rankingType == 'Volný závod', 'table-green': event.rankingType == 'Moravská liga' || event.rankingType =='Česká liga', 'table-red': event.rankingType == 'Mistrovství ČR jednotlivců' || event.rankingType == 'Mistrovství ČR družstev',
          'table-purple': event.rankingType == 'Český pohár'} ">
           <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
             {{event.date | date: 'dd.MM.yyyy'}}
