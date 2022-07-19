@@ -30,7 +30,7 @@ const routes: Routes = [
     path: `events/admin/:id`,
     component: EventAdminComponent,
     canActivate: [AuthGuard],
-    data: { role: 'admin' },
+    data: { roles: ['admin'] },
   },
   { path: 'riders', component: RidersComponent },
   { path: 'riders/:id', component: RiderDetailComponent },

@@ -59,7 +59,7 @@ export class UsersService implements OnInit, OnDestroy {
     }))
   }
 
-  canLoad(role: string) {
+  canLoad(roles: string[]) {
     return this.user.pipe(
       take(1),
       switchMap((user) => {
@@ -67,14 +67,9 @@ export class UsersService implements OnInit, OnDestroy {
           return of(this.autoLogin())
         }
         return of(user)
-      }),
-      tap((user) => {
-        if(!user || !user.role.includes(role)) {
-          this.router.navigate(['login'])
-        }
-      }),
-      switchMap((user) => {
-        return of(!!user)
+      }), switchMap((user) => {
+        if(!user) return of(false)
+        return of(roles.some(role => user.role.includes(role)) || user.role.includes('superuser'))
       })
     )
   }
