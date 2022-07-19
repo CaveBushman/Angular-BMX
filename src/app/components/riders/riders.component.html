@@ -17,7 +17,7 @@
     <div class="search" style="margin-top: 2rem">
       <div class="flex flex-row mx-auto space-x-5 mb-6">
         <div class="col-sm w-full">
-          <input [(ngModel)]="lastNameSearch" 
+          <input [(ngModel)]="lastNameSearch"
             class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md dark:dark"
             type="text" placeholder="Napiš příjmení jezdce" aria-label="default input example" id="inputLastName" />
         </div>
@@ -79,7 +79,7 @@
                     </div>
                   </td>
                   <td class="px-6 py-2 whitespace-nowrap">
-                    <div class="text-sm text-gray-900 dark:dark">{{rider.club.name}}</div>
+                    <div class="text-sm text-gray-900 dark:dark">{{rider.club.name | uppercase}}</div>
                     <div class="text-sm text-gray-500 dark:dark">{{rider.uciid}}</div>
                   </td>
                   <td class="px-6 py-2 whitespace-nowrap">

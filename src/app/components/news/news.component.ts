@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { NewsService } from 'src/app/services/news.service';
+import {INews} from "../../models/inews";
 
 @Component({
   selector: 'app-news',
@@ -10,7 +11,7 @@ import { NewsService } from 'src/app/services/news.service';
 export class NewsComponent implements OnInit {
   title: string = 'Novinky ze světa BMX';
 
-  news: any = [];
+  news: INews[] = [];
 
   public constructor(private titleService: Title, private newsService: NewsService) {
     this.titleService.setTitle('Novinky');

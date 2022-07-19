@@ -23,6 +23,8 @@ export interface IRider {
   plateColor20: string;
   class20: string;
   class24: string;
+  mark20: boolean,
+  mark24: boolean,
   emergencyContact: string;
   emergencyPhone: string;
   isActive: boolean;

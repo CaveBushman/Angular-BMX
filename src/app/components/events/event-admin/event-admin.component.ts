@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { IEvent } from 'src/app/models/ievent';
-import { IEventClasses } from 'src/app/models/ieventclasses';
-import { IRider } from 'src/app/models/irider';
-import { EventsService } from 'src/app/services/events.service';
-import { RidersService } from 'src/app/services/riders.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {IEvent} from 'src/app/models/ievent';
+import {IEventClasses} from 'src/app/models/ieventclasses';
+import {IRider} from 'src/app/models/irider';
+import {EventsService} from 'src/app/services/events.service';
+import {RidersService} from 'src/app/services/riders.service';
 import * as XLSX from 'xlsx';
-import { formatDate } from '@angular/common';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-event-admin',
@@ -22,7 +22,9 @@ export class EventAdminComponent implements OnInit {
   currentYear = new Date().getFullYear();
   ridersList: any = [];
   ridersListToExcel: any = [];
-  ridersListFilename: string = 'Rider_list.xlsx';
+  ridersListFilename: string = '';
+
+  entriesListFilename: string ="";
 
   eventClasses!: IEventClasses;
 
@@ -45,7 +47,8 @@ export class EventAdminComponent implements OnInit {
     private _route: ActivatedRoute,
     private eventsService: EventsService,
     private ridersService: RidersService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this._eventID = this._route.snapshot.paramMap.get('id');
@@ -173,7 +176,7 @@ export class EventAdminComponent implements OnInit {
           XLSX.utils.sheet_add_aoa(worksheet, [['Suspension End Date']], {
             origin: 'AY1',
           });
-          XLSX.utils.book_append_sheet(workbook, worksheet, 'EXT5');
+          XLSX.utils.book_append_sheet(workbook, worksheet, 'BEM5_EXT');
           XLSX.writeFile(workbook, this.ridersListFilename);
         });
       });
@@ -181,6 +184,8 @@ export class EventAdminComponent implements OnInit {
 
   getEntriesFile() {
     console.log('Entries button clicked');
+    this.entriesListFilename =
+      formatDate(this.event.date, 'yyyy/MM/dd', 'en-EN') + '_entries_list.xlsx';
   }
 
   processResults() {

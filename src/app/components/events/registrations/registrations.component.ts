@@ -49,11 +49,13 @@ export class RegistrationsComponent implements OnInit {
   }
 
   getEventClasses(id: any) {
-    this.eventsService.getClassAndFee(id).subscribe((response: any) => {
+    this.eventsService.getClassAndFee(this.event.eventClasses._id).subscribe((response: any) => {
       this.eventClasses = response.data;
       this._riders.forEach((rider: IRider) => {
         rider.class20 = this.eventsService.setClass20(rider, this.eventClasses);
         rider.class24 = this.eventsService.setClass24(rider, this.eventClasses);
+
+        //TODO: Dodělat označení již přihlášených jezdců v html
         this.statusNumber++;
       });
       this.isRidersLoading = false;
