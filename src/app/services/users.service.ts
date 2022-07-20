@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export interface IAuthData {
   user: IUser
   token: string
+  expiresIn: Date | null | undefined
 }
 
 @Injectable({
@@ -85,6 +86,9 @@ export class UsersService implements OnInit, OnDestroy {
   login(email: string, password: string) {
     const body = { email, password }
     return this.http.post<IAuthData>(this.URL+'login', body).pipe(tap(data => {
+      const expireDate = new Date()
+      expireDate.setHours(expireDate.getHours() + 24)
+      data.expiresIn = expireDate
       this.setUserData(data)
     }))
   }
@@ -98,10 +102,9 @@ export class UsersService implements OnInit, OnDestroy {
     const jsonData = localStorage.getItem('authData')
     if(!jsonData) return null
     const parsedData = JSON.parse(jsonData) as IAuthData
-    //TODO: Check token expiration
+    if(new Date() >= parsedData.expiresIn!) return null
     this._authData.next(parsedData)    
-    //TODO: Token expiration
-    //this.autoLogout(9007199254740991)
+    this.autoLogout((new Date(parsedData.expiresIn!)).getTime() - new Date().getTime())
     return parsedData.user
   }
 
@@ -110,8 +113,7 @@ export class UsersService implements OnInit, OnDestroy {
       clearTimeout(this.logoutTimer)
     }
     this.logoutTimer = setTimeout(() => {
-      console.log("2");
-      
+      console.log("Auto Logout");
       this.logout()
     }, time)
   }
@@ -120,7 +122,6 @@ export class UsersService implements OnInit, OnDestroy {
     const jsonData = JSON.stringify(userData)
     localStorage.setItem('authData', jsonData)
     this._authData.next(userData)
-    //TODO: Token expiration
-    //this.autoLogout(9007199254740991) 
+    this.autoLogout(userData.expiresIn!.getTime() - new Date().getTime())
   }
 }
