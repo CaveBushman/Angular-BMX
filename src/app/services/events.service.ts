@@ -30,7 +30,7 @@ export class EventsService {
   }
 
   setClass20(rider: IRider, eventClasses: IEventClasses) {
-  
+
     if (rider.class20 == 'Boys 6') {
       return eventClasses.boys6Class;
     } else if (rider.class20 == 'Boys 7') {
@@ -131,5 +131,305 @@ export class EventsService {
     } else {
       return eventClasses.women40CrClass;
     }
+  }
+
+  setPoints(event: IEvent, position: number) {
+    // RANKING CODE 1 - Mistrovství ČR jednotlivců
+    if (event.rankingType == 'Mistrovství ČR jednotlivců') {
+      if (position == 1) {
+        return 350;
+      } else if (position == 2) {
+        return 300;
+      } else if (position == 3) {
+        return 250;
+      } else if (position == 4) {
+        return 200;
+      } else if (position == 5) {
+        return 190;
+      } else if (position == 6) {
+        return 180;
+      } else if (position == 7) {
+        return 170;
+      } else if (position == 8) {
+        return 160;
+      } else if (position == 9) {
+        return 125;
+      } else if (position == 10) {
+        return 125;
+      } else if (position == 11) {
+        return 120;
+      } else if (position == 12) {
+        return 120;
+      } else if (position == 13) {
+        return 115;
+      } else if (position == 14) {
+        return 115;
+      } else if (position == 15) {
+        return 110;
+      } else if (position == 16) {
+        return 110;
+      } else if (position == 17) {
+        return 90;
+      } else if (position == 18) {
+        return 90;
+      } else if (position == 19) {
+        return 90;
+      } else if (position == 20) {
+        return 90;
+      } else if (position == 21) {
+        return 80;
+      } else if (position == 22) {
+        return 80;
+      } else if (position == 23) {
+        return 80;
+      } else if (position == 24) {
+        return 80;
+      } else if (position == 25) {
+        return 70;
+      } else if (position == 26) {
+        return 70;
+      } else if (position == 27) {
+        return 70;
+      } else if (position == 28) {
+        return 70;
+      } else if (position == 29) {
+        return 60;
+      } else if (position == 30) {
+        return 60;
+      } else if (position == 31) {
+        return 60;
+      } else if (position == 32) {
+        return 60;
+      } else {
+        return 0;
+      }
+    }
+
+    // RANKING CODE 2 - Český pohár
+    if (event.rankingType == 'Český pohár') {
+      if (position == 1) {
+        return 150;
+      } else if (position == 2) {
+        return 130;
+      } else if (position == 3) {
+        return 115;
+      } else if (position == 4) {
+        return 100;
+      } else if (position == 5) {
+        return 90;
+      } else if (position == 6) {
+        return 80;
+      } else if (position == 7) {
+        return 75;
+      } else if (position == 8) {
+        return 70;
+      } else if (position == 9) {
+        return 65;
+      } else if (position == 10) {
+        return 65;
+      } else if (position == 11) {
+        return 60;
+      } else if (position == 12) {
+        return 60;
+      } else if (position == 13) {
+        return 55;
+      } else if (position == 14) {
+        return 55;
+      } else if (position == 15) {
+        return 50;
+      } else if (position == 16) {
+        return 50;
+      } else if (position == 17) {
+        return 40;
+      } else if (position == 18) {
+        return 40;
+      } else if (position == 19) {
+        return 40;
+      } else if (position == 20) {
+        return 40;
+      } else if (position == 21) {
+        return 35;
+      } else if (position == 22) {
+        return 35;
+      } else if (position == 23) {
+        return 35;
+      } else if (position == 24) {
+        return 35;
+      } else if (position == 25) {
+        return 30;
+      } else if (position == 26) {
+        return 30;
+      } else if (position == 27) {
+        return 30;
+      } else if (position == 28) {
+        return 30;
+      } else if (position == 29) {
+        return 25;
+      } else if (position == 30) {
+        return 25;
+      } else if (position == 31) {
+        return 25;
+      } else if (position == 32) {
+        return 25;
+      } else {
+        return 0;
+      }
+    }
+
+    // RANKING CODE 4 - Volný závod
+    if (event.rankingType == 'Volný závod') {
+      if (position == 1) {
+        return 60;
+      } else if (position == 2) {
+        return 45;
+      } else if (position == 3) {
+        return 40;
+      } else if (position == 4) {
+        return 35;
+      } else if (position == 5) {
+        return 30;
+      } else if (position == 6) {
+        return 25;
+      } else if (position == 7) {
+        return 20;
+      } else if (position == 8) {
+        return 15;
+      } else if (position == 9) {
+        return 8;
+      } else if (position == 10) {
+        return 8;
+      } else if (position == 11) {
+        return 6;
+      } else if (position == 12) {
+        return 6;
+      } else if (position == 13) {
+        return 4;
+      } else if (position == 14) {
+        return 4;
+      } else if (position == 15) {
+        return 2;
+      } else if (position == 16) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+
+    // RANKING CODE 3 - Česká a Moravská liga
+    if (event.rankingType == 'Česká liga' || event.rankingType == "Moravská liga") {
+      if (position == 1) {
+        return 60;
+      } else if (position == 2) {
+        return 45;
+      } else if (position == 3) {
+        return 40;
+      } else if (position == 4) {
+        return 35;
+      } else if (position == 5) {
+        return 30;
+      } else if (position == 6) {
+        return 25;
+      } else if (position == 7) {
+        return 20;
+      } else if (position == 8) {
+        return 15;
+      } else if (position == 9) {
+        return 8;
+      } else if (position == 10) {
+        return 8;
+      } else if (position == 11) {
+        return 6;
+      } else if (position == 12) {
+        return 6;
+      } else if (position == 13) {
+        return 4;
+      } else if (position == 14) {
+        return 4;
+      } else if (position == 15) {
+        return 2;
+      } else if (position == 16) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+    // RANKING CODE 4 - Volný závod
+    if (event.rankingType == 'Volný závod') {
+      if (position == 1) {
+        return 60;
+      } else if (position == 2) {
+        return 45;
+      } else if (position == 3) {
+        return 40;
+      } else if (position == 4) {
+        return 35;
+      } else if (position == 5) {
+        return 30;
+      } else if (position == 6) {
+        return 25;
+      } else if (position == 7) {
+        return 20;
+      } else if (position == 8) {
+        return 15;
+      } else if (position == 9) {
+        return 8;
+      } else if (position == 10) {
+        return 8;
+      } else if (position == 11) {
+        return 6;
+      } else if (position == 12) {
+        return 6;
+      } else if (position == 13) {
+        return 4;
+      } else if (position == 14) {
+        return 4;
+      } else if (position == 15) {
+        return 2;
+      } else if (position == 16) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+
+    // RANKING CODE 4 - Volný závod
+    if (event.rankingType == 'Volný závod') {
+      if (position == 1) {
+        return 60;
+      } else if (position == 2) {
+        return 45;
+      } else if (position == 3) {
+        return 40;
+      } else if (position == 4) {
+        return 35;
+      } else if (position == 5) {
+        return 30;
+      } else if (position == 6) {
+        return 25;
+      } else if (position == 7) {
+        return 20;
+      } else if (position == 8) {
+        return 15;
+      } else if (position == 9) {
+        return 8;
+      } else if (position == 10) {
+        return 8;
+      } else if (position == 11) {
+        return 6;
+      } else if (position == 12) {
+        return 6;
+      } else if (position == 13) {
+        return 4;
+      } else if (position == 14) {
+        return 4;
+      } else if (position == 15) {
+        return 2;
+      } else if (position == 16) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+    return 0;
   }
 }
