@@ -39,6 +39,10 @@ import { RegistrationsComponent } from './components/events/registrations/regist
 import { ProgressbarComponent } from './components/utils/progressbar/progressbar.component';
 import { EventAdminComponent } from './components/events/event-admin/event-admin.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminRidersComponent } from './components/admin/admin-riders/admin-riders.component';
+import { AdminEventsComponent } from './components/admin/admin-events/admin-events.component';
+import { AdminClubsComponent } from './components/admin/admin-clubs/admin-clubs.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +82,10 @@ import { LoginComponent } from './components/auth/login/login.component';
     ProgressbarComponent,
     EventAdminComponent,
     LoginComponent,
+    AdminComponent,
+    AdminRidersComponent,
+    AdminEventsComponent,
+    AdminClubsComponent,
   ],
   imports: [
     BrowserModule,

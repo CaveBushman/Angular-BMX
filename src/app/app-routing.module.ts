@@ -19,6 +19,7 @@ import { RegistrationsComponent } from './components/events/registrations/regist
 import { EventAdminComponent } from './components/events/event-admin/event-admin.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'events', component: EventsComponent },
   { path: `events/:id`, component: EventDetailComponent },
   { path: 'events/entry/:id', component: RegistrationsComponent },
+  {path: `admin`, component: AdminComponent, canActivate: [AuthGuard], data: {roles: ['admin']}},
   {
     path: `events/admin/:id`,
     component: EventAdminComponent,

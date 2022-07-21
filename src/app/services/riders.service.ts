@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IRider } from '../models/irider';
+import { IClub } from '../models/iclub';
 
 @Injectable({
   providedIn: 'root',
@@ -177,5 +178,14 @@ export class RidersService {
         return 'Women 40 and over';
       }
     }
+  }
+
+  isValidLicence(rider: IRider) {
+    return this.http.get(this.URL + 'isvalidlicence/' + rider.uciid);
+    //TODO: Dodělat funkci ověření platnosti licencí
+  }
+
+  getRidersInClub(club: IClub) {
+    return this.http.get(this.URL + '/ridersinclub/' + club._id);
   }
 }
