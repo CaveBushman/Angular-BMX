@@ -196,10 +196,27 @@ export class EventAdminComponent implements OnInit {
     console.log('Edit event button clicked');
   }
 
-  onFileDrop(e: File, type: string) {
-    if(type === 'PDF' && e.name.toLowerCase().endsWith('.pdf')) {
-      this.btnPDF1 = e.name
+  onFileDrop(file: File, type: string) {
+    if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
+      this.btnPDF1 = file.name
       this.btnPDF2 = ''
     }
+  }
+
+  onFileSelect(e: Event, type: string) {
+    console.log('select');
+    
+    const files = (e.currentTarget as HTMLInputElement).files
+    if(files === null || files === undefined) return
+    const file = files[0]
+    if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
+      this.btnPDF1 = file.name
+      this.btnPDF2 = ''
+    }
+  }
+
+  pokus() {
+    console.log('working');
+    
   }
 }
