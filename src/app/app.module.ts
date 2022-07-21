@@ -43,6 +43,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminRidersComponent } from './components/admin/admin-riders/admin-riders.component';
 import { AdminEventsComponent } from './components/admin/admin-events/admin-events.component';
 import { AdminClubsComponent } from './components/admin/admin-clubs/admin-clubs.component';
+import { DragDropDirective } from './directives/drag-drop.directive';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { AdminClubsComponent } from './components/admin/admin-clubs/admin-clubs.
     AdminRidersComponent,
     AdminEventsComponent,
     AdminClubsComponent,
+    DragDropDirective,
   ],
   imports: [
     BrowserModule,

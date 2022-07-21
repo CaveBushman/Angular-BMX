@@ -195,4 +195,11 @@ export class EventAdminComponent implements OnInit {
   editEvent() {
     console.log('Edit event button clicked');
   }
+
+  onFileDrop(e: File, type: string) {
+    if(type === 'PDF' && e.name.toLowerCase().endsWith('.pdf')) {
+      this.btnPDF1 = e.name
+      this.btnPDF2 = ''
+    }
+  }
 }
