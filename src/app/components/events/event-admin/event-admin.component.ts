@@ -196,17 +196,29 @@ export class EventAdminComponent implements OnInit {
     console.log('Edit event button clicked');
   }
 
-  onFileDrop(file: File, type: string) {
-    if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
-      this.btnPDF1 = file.name
-      this.btnPDF2 = ''
-    } else if(type === 'FAST' && file.name.toLowerCase().endsWith('.pdf')) {
-      this.btnFast1 = file.name
-      this.btnFast2 = ''
-    } else if(type === 'XLS' && (file.name.toLowerCase().endsWith('.xls') || file.name.toLowerCase().endsWith('.xlsx'))) {
+  onXLSFileDrop(file: File) {
+    if(file.name.toLowerCase().endsWith('.xls') || file.name.toLowerCase().endsWith('.xlsx')) {
       this.btnXLS1 = file.name
       this.btnXLS2 = ''
-    } else if(type === 'BEM' && file.name.toLowerCase().endsWith('.bem')) {
+    }
+  }
+
+  onPDFFileDrop(file: File) {
+    if(file.name.toLowerCase().endsWith('.pdf')) {
+      this.btnPDF1 = file.name
+      this.btnPDF2 = ''
+    }
+  }
+
+  onFASTFileDrop(file: File) {
+    if(file.name.toLowerCase().endsWith('.pdf')) {
+      this.btnFast1 = file.name
+      this.btnFast2 = ''
+    }
+  }
+
+  onBEMFileDrop(file: File) {
+    if(file.name.toLowerCase().endsWith('.bem')) {
       this.btnBEM1 = file.name
       this.btnBEM2 = ''
     }
