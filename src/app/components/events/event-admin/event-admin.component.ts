@@ -200,6 +200,15 @@ export class EventAdminComponent implements OnInit {
     if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
       this.btnPDF1 = file.name
       this.btnPDF2 = ''
+    } else if(type === 'FAST' && file.name.toLowerCase().endsWith('.pdf')) {
+      this.btnFast1 = file.name
+      this.btnFast2 = ''
+    } else if(type === 'XLS' && (file.name.toLowerCase().endsWith('.xls') || file.name.toLowerCase().endsWith('.xlsx'))) {
+      this.btnXLS1 = file.name
+      this.btnXLS2 = ''
+    } else if(type === 'BEM' && file.name.toLowerCase().endsWith('.bem')) {
+      this.btnBEM1 = file.name
+      this.btnBEM2 = ''
     }
   }
 
@@ -213,10 +222,5 @@ export class EventAdminComponent implements OnInit {
       this.btnPDF1 = file.name
       this.btnPDF2 = ''
     }
-  }
-
-  pokus() {
-    console.log('working');
-    
   }
 }
