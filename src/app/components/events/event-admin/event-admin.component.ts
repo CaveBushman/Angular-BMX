@@ -203,11 +203,23 @@ export class EventAdminComponent implements OnInit {
     }
   }
 
+  onXLSSelect(event: Event) {
+    const files = (event.target as HTMLInputElement).files as FileList;
+    if(files === null || files === undefined) return
+    this.onXLSFileDrop(files[0])
+  }
+
   onPDFFileDrop(file:File) {
     if(file.name.toLowerCase().endsWith('.pdf')) {
       this.btnPDF1 = file.name
       this.btnPDF2 = ''
     }
+  }
+
+  onPDFSelect(event: Event) {
+    const files = (event.target as HTMLInputElement).files as FileList;
+    if(files === null || files === undefined) return
+    this.onPDFFileDrop(files[0])
   }
 
   onFASTFileDrop(file: File) {
@@ -217,6 +229,12 @@ export class EventAdminComponent implements OnInit {
     }
   }
 
+  onFASTSelect(event: Event) {
+    const files = (event.target as HTMLInputElement).files as FileList;
+    if(files === null || files === undefined) return
+    this.onFASTFileDrop(files[0])
+  }
+
   onBEMFileDrop(file: File) {
     if(file.name.toLowerCase().endsWith('.bem')) {
       this.btnBEM1 = file.name
@@ -224,17 +242,9 @@ export class EventAdminComponent implements OnInit {
     }
   }
 
-  onFileSelect(event: Event) {
-    const target = event.target as HTMLInputElement
-    const files = target.files as FileList;
-    console.log(files)
-    // if(files === null || files === undefined) return
-    // const file = files[0]
-    // if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
-    //   this.btnPDF1 = file.name
-    //   this.btnPDF2 = ''
-    // }
+  onBEMSelect(event: Event) {
+    const files = (event.target as HTMLInputElement).files as FileList;
+    if(files === null || files === undefined) return
+    this.onBEMFileDrop(files[0])
   }
-
-
 }

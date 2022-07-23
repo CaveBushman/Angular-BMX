@@ -90,7 +90,7 @@
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze XLS soubor</p>
     </div>
   </a>
-  <input #selectFileXLS id="dropzone-file" type="file" class="hidden" (change)="onFileSelect($event)">
+  <input #selectFileXLS id="dropzone-file" type="file" class="hidden" (change)="onXLSSelect($event)">
 </div>
 
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onPDFFileDrop($event)">
@@ -105,7 +105,7 @@
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze PDF soubor</p>
     </div>
 </a>
-<input #selectFile class="hidden" value="select" id="dropzone-file" type="file" (change)="onFileSelect($event)">
+<input #selectFile class="hidden" value="select" id="dropzone-file" type="file" (change)="onPDFSelect($event)">
 </div>
 
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onFASTFileDrop($event)">
@@ -121,7 +121,7 @@
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze PDF soubor</p>
     </div>
   </a>
-  <input #selectFast id="dropzone-file" type="file" class="hidden" (change) = "onFileSelect($event)">
+  <input #selectFast id="dropzone-file" type="file" class="hidden" (change)="onFASTSelect($event)">
 </div>
 
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onBEMFileDrop($event)">
@@ -137,7 +137,7 @@
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze BEM soubor</p>
     </div>
   </a>
-  <input #selectBEM id="dropzone-file" type="file" class="hidden" (change)="onFileSelect($event)">
+  <input #selectBEM id="dropzone-file" type="file" class="hidden" (change)="onBEMSelect($event)">
 </div>
 </div>
 
