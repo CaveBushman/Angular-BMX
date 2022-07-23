@@ -130,7 +130,7 @@
               <div class="mt-4 space-y-4">
                 <div class="flex items-start">
                   <div class="h-5 flex items-center">
-                    <input disabled id="is20" name="is20" type="checkbox" [(ngModel)]="rider.is20"
+                    <input [disabled]="isDisabled" id="is20" name="is20" type="checkbox" [(ngModel)]="rider.is20"
                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                   </div>
                   <div class="ml-3 text-sm">
@@ -140,7 +140,7 @@
                 </div>
                 <div class="flex items-start">
                   <div class="flex items-center h-5">
-                    <input disabled id="is24" name="is24" type="checkbox" [(ngModel)]="rider.is24"
+                    <input [disabled]="isDisabled" id="is24" name="is24" type="checkbox" [(ngModel)]="rider.is24"
                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                   </div>
                   <div class="ml-3 text-sm">
