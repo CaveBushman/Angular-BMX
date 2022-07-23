@@ -20,7 +20,7 @@ export interface IEvent {
   backupBEM2: string;
   resultSeries: string;
   resultsPDF: string;
-  fastRiders: string;
+  resultsFast: string;
   resultXLS: string;
   canceled: boolean;
 }

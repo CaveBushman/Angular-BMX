@@ -26,26 +26,36 @@ export class EventsService {
     return this.http.get(this.URL + id);
   }
 
+  patchEvent(id: string, body: any) {
+
+    return this.http.patch(this.URL +"/" + id, body)
+
+  }
+
+  postDeleteFile (body: any) {
+    return this.http.post(this.URL_UPLOAD + "delete", body);
+  }
+
   getClassAndFee(id: string) {
     return this.http.get(this.URL_CLASSES + id);
   }
 
-  postFileXLS (formData: any) {
+  postFileXLS(formData: any) {
     console.log(formData);
     return this.http.post(this.URL_UPLOAD + "xls", formData)
   }
 
-  postFilePDF (formData: any) {
+  postFilePDF(formData: any) {
     console.log(formData);
     return this.http.post(this.URL_UPLOAD + "pdf", formData)
   }
 
-  postFileFast (formData: any) {
+  postFileFast(formData: any) {
     console.log(formData);
     return this.http.post(this.URL_UPLOAD + "fast", formData)
   }
 
-  postFileBEM (formData: any) {
+  postFileBEM(formData: any) {
     console.log(formData);
     return this.http.post(this.URL_UPLOAD + "bem", formData)
   }
@@ -124,7 +134,7 @@ export class EventsService {
     if (rider.class24 == 'Boys 12 and under') {
       return eventClasses.boys12CrClass;
     } else if (rider.class24 == 'Boys 13 and 14') {
-      return  eventClasses.boys13CrClass;
+      return eventClasses.boys13CrClass;
     } else if (rider.class24 == 'Boys 15 and 16') {
       return eventClasses.boys15CrClass;
     } else if (rider.class24 == 'Men 17-24') {

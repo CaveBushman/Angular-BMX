@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {IEvent} from 'src/app/models/ievent';
-import {IEventClasses} from 'src/app/models/ieventclasses';
-import {IRider} from 'src/app/models/irider';
-import {EventsService} from 'src/app/services/events.service';
-import {RidersService} from 'src/app/services/riders.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IEvent } from 'src/app/models/ievent';
+import { IEventClasses } from 'src/app/models/ieventclasses';
+import { IRider } from 'src/app/models/irider';
+import { EventsService } from 'src/app/services/events.service';
+import { RidersService } from 'src/app/services/riders.service';
 import * as XLSX from 'xlsx';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-event-admin',
@@ -24,7 +24,7 @@ export class EventAdminComponent implements OnInit {
   ridersListToExcel: any = [];
   ridersListFilename: string = '';
 
-  entriesListFilename: string ="";
+  entriesListFilename: string = "";
 
   eventClasses!: IEventClasses;
 
@@ -72,7 +72,7 @@ export class EventAdminComponent implements OnInit {
       .subscribe((response: any) => {
         console.log(response)
         this.eventClasses = response.data;
-        
+
         this.ridersService.getValidRiders().subscribe((response: any) => {
           this.ridersList = response.data;
           this.ridersList.forEach((rider: IRider) => {
@@ -82,7 +82,7 @@ export class EventAdminComponent implements OnInit {
             } else {
               rider.gender = 'F';
             }
-            
+
             // Upravuji kategorie přímo pro tento závod
             rider.class20 = this.eventsService.setClass20(
               rider,
@@ -92,7 +92,7 @@ export class EventAdminComponent implements OnInit {
               rider,
               this.eventClasses
             );
-          
+
             let row = {
               Licence_num: rider.uciid,
               UCI_ID: rider.uciid,
@@ -201,7 +201,7 @@ export class EventAdminComponent implements OnInit {
   }
 
   onXLSFileDrop(file: File) {
-    if(file.name.toLowerCase().endsWith('.xls') || file.name.toLowerCase().endsWith('.xlsx')) {
+    if (file.name.toLowerCase().endsWith('.xls') || file.name.toLowerCase().endsWith('.xlsx')) {
       this.btnXLS1 = file.name
       this.btnXLS2 = ''
       this.fileXLS = file;
@@ -210,12 +210,12 @@ export class EventAdminComponent implements OnInit {
 
   onXLSSelect(event: Event) {
     const files = (event.target as HTMLInputElement).files as FileList;
-    if(files === null || files === undefined) return
+    if (files === null || files === undefined) return
     this.onXLSFileDrop(files[0])
   }
 
-  onPDFFileDrop(file:File) {
-    if(file.name.toLowerCase().endsWith('.pdf')) {
+  onPDFFileDrop(file: File) {
+    if (file.name.toLowerCase().endsWith('.pdf')) {
       this.btnPDF1 = file.name
       this.btnPDF2 = ''
       this.filePDF = file;
@@ -224,13 +224,13 @@ export class EventAdminComponent implements OnInit {
 
   onPDFSelect(event: Event) {
     const files = (event.target as HTMLInputElement).files as FileList;
-    if(files === null || files === undefined) return
+    if (files === null || files === undefined) return
     this.onPDFFileDrop(files[0])
     console.log(files)
   }
 
   onFASTFileDrop(file: File) {
-    if(file.name.toLowerCase().endsWith('.pdf')) {
+    if (file.name.toLowerCase().endsWith('.pdf')) {
       this.btnFast1 = file.name
       this.btnFast2 = ''
       this.fileFast = file;
@@ -239,63 +239,130 @@ export class EventAdminComponent implements OnInit {
 
   onFASTSelect(event: Event) {
     const files = (event.target as HTMLInputElement).files as FileList;
-    if(files === null || files === undefined) return
+    if (files === null || files === undefined) return
     this.onFASTFileDrop(files[0])
   }
 
   onBEMFileDrop(file: File) {
-    if(file.name.toLowerCase().endsWith('.bem')) {
+    if (file.name.toLowerCase().endsWith('.bem')) {
       this.btnBEM1 = file.name
       this.btnBEM2 = ''
-      this.fileBEM=file;
+      this.fileBEM = file;
     }
   }
 
   onBEMSelect(event: Event) {
     const files = (event.target as HTMLInputElement).files as FileList;
-    if(files === null || files === undefined) return
+    if (files === null || files === undefined) return
     this.onBEMFileDrop(files[0])
   }
 
   processResults() {
     console.log('Process results button clicked');
 
-    if (this.btnXLS1 != 'Click to upload'){
+    if (this.btnXLS1 != 'Click to upload') {
       console.log("Budu ukládat XLS soubor");
+
+      const oldFileName = this.event.resultXLS
 
       const formData = new FormData();
       formData.append('file', this.fileXLS)
       this.eventsService.postFileXLS(formData).subscribe()
-      
+
+      // TODO: Uložit název nového souboru do databáze
+
+      // TODO: Smazat starý soubor
+
+      if (oldFileName) {
+        // kod pro smazání starého souboru
+
+
+      }
     }
 
-    if (this.btnPDF1 != 'Click to upload'){
+    if (this.btnPDF1 != 'Click to upload') {
       console.log("Budu ukládat PDF soubor");
-      console.log(this.btnPDF1)
+      const oldFileName = this.event.resultsPDF || "";
+      let newFileNamePDF = "";
 
       const formData = new FormData();
       formData.append('file', this.filePDF)
-      this.eventsService.postFilePDF(formData).subscribe()
-      
+      //nahraj soubor na server
+      this.eventsService.postFilePDF(formData).subscribe((response: any) => {
+        newFileNamePDF = response.data.filename;
+        // Ulož název nového souboru do databáze
+        const body = { "resultsPDF": newFileNamePDF }
+        this.eventsService.patchEvent(this.event._id, body).subscribe((response: any) => {
+          // vymaž starý soubor
+          const removeFile = { "filename": "uploads/results/pdf/" + oldFileName }
+          this.eventsService.postDeleteFile(removeFile).subscribe((response: any) => {
+            console.log(response.data)
+            // Aktualizuj obsah resultsPDF
+            this.eventsService.getEvent(this._eventID).subscribe((response: any) => {
+              this.event = response.data;
+            })
+          })
+        })
+      })
     }
 
-    if (this.btnFast1 != 'Click to upload'){
+    if (this.btnFast1 != 'Click to upload') {
       console.log("Budu ukládat FAST soubor");
+
+      const oldFileName = this.event.resultsFast || ""
+      let newFilenameFast = "";
 
       const formData = new FormData();
       formData.append('file', this.fileFast)
-      this.eventsService.postFileFast(formData).subscribe()
-      
+      // Nahraj soubor na server
+      this.eventsService.postFileFast(formData).subscribe((response: any) => {
+        newFilenameFast = response.data.filename;
+        //Ulož název nového souboru do databáze
+        const body = { "resultsFast": newFilenameFast }
+        this.eventsService.patchEvent(this.event._id, body).subscribe((response: any) => {
+          // vymaž starý soubor
+          const removeFile = { "filename": "uploads/results/fast/" + oldFileName }
+          this.eventsService.postDeleteFile(removeFile).subscribe((response: any) => {
+            console.log(response.data)
+            // Aktualizuj obsah resultsFast
+            this.eventsService.getEvent(this._eventID).subscribe((response: any) => {
+              this.event = response.data;
+            })
+          })
+        })
+      })
     }
 
-    if (this.btnBEM1 != 'Click to upload'){
+    if (this.btnBEM1 != 'Click to upload') {
       console.log("Budu ukládat BEM soubor");
       console.log(this.btnBEM1)
+
+      const oldFileName = this.event.backupBEM
+      let newFilenameBem = "";
 
       const formData = new FormData();
       formData.append('file', this.fileBEM)
       this.eventsService.postFileBEM(formData).subscribe()
-      
+
+      // Nahraj soubor na server
+      this.eventsService.postFileBEM(formData).subscribe((response: any) => {
+        newFilenameBem = response.data.filename;
+        //Ulož název nového souboru do databáze
+        const body = { "backupBEM": newFilenameBem }
+        this.eventsService.patchEvent(this.event._id, body).subscribe((response: any) => {
+          // vymaž starý soubor
+          const removeFile = { "filename": "uploads/bem/" + oldFileName }
+          this.eventsService.postDeleteFile(removeFile).subscribe((response: any) => {
+            console.log(response.data)
+            // Aktualizuj obsah resultsFast
+            this.eventsService.getEvent(this._eventID).subscribe((response: any) => {
+              this.event = response.data;
+            })
+          })
+        })
+      })
     }
   }
 }
+
+
