@@ -78,7 +78,7 @@
 <div class="max-w-7xl mx-auto mt-4 grid grid-cols-4 gap-4">
 
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onXLSFileDrop($event)">
-  <label for="dropzone-file"
+  <a (click) = "selectFileXLS.click()"
     class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
     <div class="flex flex-col justify-center items-center pt-5 pb-6">
       <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -89,12 +89,12 @@
       <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnXLS1}}</span> {{btnXLS2}}</p>
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze XLS soubor</p>
     </div>
-    <input id="dropzone-file" type="file" class="hidden">
-  </label>
+  </a>
+  <input #selectFileXLS id="dropzone-file" type="file" class="hidden" (change)="onFileSelect($event)">
 </div>
+
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onPDFFileDrop($event)">
-  <label for="dropzone-file"
-    class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+  <a (click)=" selectFile.click()" class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
     <div class="flex flex-col justify-center items-center pt-5 pb-6">
       <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg">
@@ -104,12 +104,12 @@
       <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnPDF1}}</span> {{btnPDF2}}</p>
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze PDF soubor</p>
     </div>
-    <input id="dropzone-file" type="file" class="hidden" (change)="onFileSelect($event, 'PDF')">
-  </label>
+</a>
+<input #selectFile class="hidden" value="select" id="dropzone-file" type="file" (change)="onFileSelect($event)">
 </div>
 
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onFASTFileDrop($event)">
-  <label for="dropzone-file"
+  <a (click)="selectFast.click()"
     class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
     <div class="flex flex-col justify-center items-center pt-5 pb-6">
       <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -120,12 +120,12 @@
       <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnFast1}}</span> {{btnFast2}}</p>
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze PDF soubor</p>
     </div>
-    <input id="dropzone-file" type="file" class="hidden">
-  </label>
+  </a>
+  <input #selectFast id="dropzone-file" type="file" class="hidden" (change) = "onFileSelect($event)">
 </div>
 
 <div class="flex justify-center items-center w-full" appDragDrop (fileDrop)="onBEMFileDrop($event)">
-  <label for="dropzone-file"
+  <a (click)="selectBEM.click()"
     class="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
     <div class="flex flex-col justify-center items-center pt-5 pb-6">
       <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -136,8 +136,8 @@
       <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">{{btnBEM1}}</span> {{btnBEM2}}</p>
       <p class="text-xs text-gray-500 dark:text-gray-400">pouze BEM soubor</p>
     </div>
-    <input id="dropzone-file" type="file" class="hidden">
-  </label>
+  </a>
+  <input #selectBEM id="dropzone-file" type="file" class="hidden" (change)="onFileSelect($event)">
 </div>
 </div>
 

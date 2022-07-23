@@ -203,7 +203,7 @@ export class EventAdminComponent implements OnInit {
     }
   }
 
-  onPDFFileDrop(file: File) {
+  onPDFFileDrop(file:File) {
     if(file.name.toLowerCase().endsWith('.pdf')) {
       this.btnPDF1 = file.name
       this.btnPDF2 = ''
@@ -224,15 +224,17 @@ export class EventAdminComponent implements OnInit {
     }
   }
 
-  onFileSelect(e: Event, type: string) {
-    console.log('select');
-    
-    const files = (e.currentTarget as HTMLInputElement).files
-    if(files === null || files === undefined) return
-    const file = files[0]
-    if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
-      this.btnPDF1 = file.name
-      this.btnPDF2 = ''
-    }
+  onFileSelect(event: Event) {
+    const target = event.target as HTMLInputElement
+    const files = target.files as FileList;
+    console.log(files)
+    // if(files === null || files === undefined) return
+    // const file = files[0]
+    // if(type === 'PDF' && file.name.toLowerCase().endsWith('.pdf')) {
+    //   this.btnPDF1 = file.name
+    //   this.btnPDF2 = ''
+    // }
   }
+
+
 }
