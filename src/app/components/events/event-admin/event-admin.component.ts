@@ -43,6 +43,11 @@ export class EventAdminComponent implements OnInit {
   btnBEM1: string = 'Click to upload';
   btnBEM2: string = 'or drag and drop';
 
+  fileXLS!: File;
+  filePDF!: File;
+  fileFast!: File;
+  fileBEM!: File;
+
   constructor(
     private _route: ActivatedRoute,
     private eventsService: EventsService,
@@ -65,8 +70,9 @@ export class EventAdminComponent implements OnInit {
     this.eventsService
       .getClassAndFee(this.event.eventClasses._id)
       .subscribe((response: any) => {
+        console.log(response)
         this.eventClasses = response.data;
-
+        
         this.ridersService.getValidRiders().subscribe((response: any) => {
           this.ridersList = response.data;
           this.ridersList.forEach((rider: IRider) => {
@@ -76,6 +82,7 @@ export class EventAdminComponent implements OnInit {
             } else {
               rider.gender = 'F';
             }
+            
             // Upravuji kategorie přímo pro tento závod
             rider.class20 = this.eventsService.setClass20(
               rider,
@@ -85,7 +92,7 @@ export class EventAdminComponent implements OnInit {
               rider,
               this.eventClasses
             );
-
+          
             let row = {
               Licence_num: rider.uciid,
               UCI_ID: rider.uciid,
@@ -188,9 +195,6 @@ export class EventAdminComponent implements OnInit {
       formatDate(this.event.date, 'yyyy/MM/dd', 'en-EN') + '_entries_list.xlsx';
   }
 
-  processResults() {
-    console.log('Process results button clicked');
-  }
 
   editEvent() {
     console.log('Edit event button clicked');
@@ -200,6 +204,7 @@ export class EventAdminComponent implements OnInit {
     if(file.name.toLowerCase().endsWith('.xls') || file.name.toLowerCase().endsWith('.xlsx')) {
       this.btnXLS1 = file.name
       this.btnXLS2 = ''
+      this.fileXLS = file;
     }
   }
 
@@ -213,6 +218,7 @@ export class EventAdminComponent implements OnInit {
     if(file.name.toLowerCase().endsWith('.pdf')) {
       this.btnPDF1 = file.name
       this.btnPDF2 = ''
+      this.filePDF = file;
     }
   }
 
@@ -220,12 +226,14 @@ export class EventAdminComponent implements OnInit {
     const files = (event.target as HTMLInputElement).files as FileList;
     if(files === null || files === undefined) return
     this.onPDFFileDrop(files[0])
+    console.log(files)
   }
 
   onFASTFileDrop(file: File) {
     if(file.name.toLowerCase().endsWith('.pdf')) {
       this.btnFast1 = file.name
       this.btnFast2 = ''
+      this.fileFast = file;
     }
   }
 
@@ -239,6 +247,7 @@ export class EventAdminComponent implements OnInit {
     if(file.name.toLowerCase().endsWith('.bem')) {
       this.btnBEM1 = file.name
       this.btnBEM2 = ''
+      this.fileBEM=file;
     }
   }
 
@@ -246,5 +255,47 @@ export class EventAdminComponent implements OnInit {
     const files = (event.target as HTMLInputElement).files as FileList;
     if(files === null || files === undefined) return
     this.onBEMFileDrop(files[0])
+  }
+
+  processResults() {
+    console.log('Process results button clicked');
+
+    if (this.btnXLS1 != 'Click to upload'){
+      console.log("Budu ukládat XLS soubor");
+
+      const formData = new FormData();
+      formData.append('file', this.fileXLS)
+      this.eventsService.postFileXLS(formData).subscribe()
+      
+    }
+
+    if (this.btnPDF1 != 'Click to upload'){
+      console.log("Budu ukládat PDF soubor");
+      console.log(this.btnPDF1)
+
+      const formData = new FormData();
+      formData.append('file', this.filePDF)
+      this.eventsService.postFilePDF(formData).subscribe()
+      
+    }
+
+    if (this.btnFast1 != 'Click to upload'){
+      console.log("Budu ukládat FAST soubor");
+
+      const formData = new FormData();
+      formData.append('file', this.fileFast)
+      this.eventsService.postFileFast(formData).subscribe()
+      
+    }
+
+    if (this.btnBEM1 != 'Click to upload'){
+      console.log("Budu ukládat BEM soubor");
+      console.log(this.btnBEM1)
+
+      const formData = new FormData();
+      formData.append('file', this.fileBEM)
+      this.eventsService.postFileBEM(formData).subscribe()
+      
+    }
   }
 }

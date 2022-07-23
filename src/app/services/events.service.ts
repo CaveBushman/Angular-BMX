@@ -10,6 +10,7 @@ import { IRider } from '../models/irider';
 export class EventsService {
   URL = 'http://localhost:3000/api/v1/events/';
   URL_CLASSES = 'http://localhost:3000/api/v1/eventclasses/';
+  URL_UPLOAD = 'http://localhost:3000/api/v1/uploads/';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +19,7 @@ export class EventsService {
   }
 
   getEventByYear(year: number) {
-    return this.http.get(this.URL + '/year/' + year);
+    return this.http.get(this.URL + 'year/' + year);
   }
 
   getEvent(id: string) {
@@ -27,6 +28,26 @@ export class EventsService {
 
   getClassAndFee(id: string) {
     return this.http.get(this.URL_CLASSES + id);
+  }
+
+  postFileXLS (formData: any) {
+    console.log(formData);
+    return this.http.post(this.URL_UPLOAD + "xls", formData)
+  }
+
+  postFilePDF (formData: any) {
+    console.log(formData);
+    return this.http.post(this.URL_UPLOAD + "pdf", formData)
+  }
+
+  postFileFast (formData: any) {
+    console.log(formData);
+    return this.http.post(this.URL_UPLOAD + "fast", formData)
+  }
+
+  postFileBEM (formData: any) {
+    console.log(formData);
+    return this.http.post(this.URL_UPLOAD + "bem", formData)
   }
 
   setClass20(rider: IRider, eventClasses: IEventClasses) {
