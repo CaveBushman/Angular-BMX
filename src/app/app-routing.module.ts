@@ -20,6 +20,7 @@ import { EventAdminComponent } from './components/events/event-admin/event-admin
 import { LoginComponent } from './components/auth/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminComponent } from './components/admin/admin.component';
+import { RiderEditComponent } from './components/riders/rider-edit/rider-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: `news/:id`, component: NewsDetailComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'rider-edit/:id', component: RiderEditComponent},
 ];
 
 @NgModule({

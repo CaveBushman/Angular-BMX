@@ -45,6 +45,7 @@ import { AdminEventsComponent } from './components/admin/admin-events/admin-even
 import { AdminClubsComponent } from './components/admin/admin-clubs/admin-clubs.component';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { SideNavComponent } from './components/admin/side-nav/side-nav.component';
+import { RiderEditComponent } from './components/riders/rider-edit/rider-edit.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { SideNavComponent } from './components/admin/side-nav/side-nav.component
     AdminClubsComponent,
     DragDropDirective,
     SideNavComponent,
+    RiderEditComponent,
   ],
   imports: [
     BrowserModule,
