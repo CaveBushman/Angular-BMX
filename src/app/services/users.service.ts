@@ -60,6 +60,15 @@ export class UsersService implements OnInit, OnDestroy {
     }))
   }
 
+  get isUserAdmin() {
+    return this._authData.asObservable().pipe(map(authData => {
+      if(authData) {
+        return authData.user.roles.includes('admin') || authData.user.roles.includes('superuser')
+      }
+      return false
+    }))
+  }
+
   canLoad(roles: string[]) {
     return this.user.pipe(
       take(1),
@@ -94,6 +103,7 @@ export class UsersService implements OnInit, OnDestroy {
   }
 
   logout() {
+    //TODO: send logout
     localStorage.removeItem('authData')
     this._authData.next(null)
   }
