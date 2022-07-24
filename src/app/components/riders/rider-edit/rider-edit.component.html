@@ -61,10 +61,24 @@
                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                   [(ngModel)]="rider.email">
               </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <label for="transponder20" class="block text-sm font-medium text-gray-700">Transpondér pro 20"</label>
+                <input type="text" name="transponder20" id="transponder20" autocomplete="given-name"
+                  [(ngModel)]="rider.transponder20"  value = "{{rider.transponder20}}"
+                  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
+  
+              <div class="col-span-6 sm:col-span-3">
+                <label for="transponder24" class="block text-sm font-medium text-gray-700">Transpondér pro 24"</label>
+                <input type="text" name="transponder24" id="transponder24" autocomplete="family-name"
+                  [(ngModel)]="rider.transponder24" value = "{{rider.transponder24}}"
+                  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+              </div>
   
               <div class="col-span-6 sm:col-span-3">
                 <label for="club" class="block text-sm font-medium text-gray-700">Klub</label>
-                <select [disabled]="isDisabled" id="club" name="club" autocomplete="club-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <select id="club" name="club" autocomplete="club-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                   <option selected="selected" value="{{rider.club._id}}">{{rider.club.name | uppercase}}</option>
                 </select>
               </div>
@@ -80,26 +94,26 @@
   
               <div class="col-span-6">
                 <label for="street_address" class="block text-sm font-medium text-gray-700">Ulice</label>
-                <input [disabled]="isDisabled" type="text" name="street_address" id="street_address" autocomplete="street-address"
+                <input type="text" name="street_address" id="street_address" autocomplete="street-address"
                   [(ngModel)]="rider.street"
                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
   
               <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                 <label for="city" class="block text-sm font-medium text-gray-700">Město</label>
-                <input [disabled]="isDisabled" type="text" name="city" id="city" autocomplete="address-level2" [(ngModel)]="rider.city"
+                <input  type="text" name="city" id="city" autocomplete="address-level2" [(ngModel)]="rider.city"
                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
   
               <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="zip" class="block text-sm font-medium text-gray-700">PSČ</label>
-                <input [disabled]="isDisabled" type="text" name="zip" id="zip" autocomplete="address-level1" [(ngModel)]="rider.zip"
+                <input  type="text" name="zip" id="zip" autocomplete="address-level1" [(ngModel)]="rider.zip"
                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
               <div></div>
               <div class="col-span-6 sm:col-span-3">
                 <label for="emergency-contact" class="block text-sm font-medium text-gray-700">Nouzový kontakt</label>
-                <input [disabled]="isDisabled" type="text" name="emergency-contact" id="emergency-contact" autocomplete="given-name"
+                <input type="text" name="emergency-contact" id="emergency-contact" autocomplete="given-name"
                   [(ngModel)]="rider.emergencyContact"
                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
@@ -107,7 +121,7 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="emergency-phone" class="block text-sm font-medium text-gray-700">Telefon na nouzový
                   kontakt</label>
-                <input [disabled]="isDisabled" type="text" name="emergency-phone" id="emergency-phone" autocomplete="family-name"
+                <input type="text" name="emergency-phone" id="emergency-phone" autocomplete="family-name"
                   [(ngModel)]="rider.emergencyPhone"
                   class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               </div>
@@ -148,7 +162,7 @@
                     <p class="text-gray-500">pokud budeš jezdit kategorii Cruiser</p>
                   </div>
                 </div>
-                <div class="flex items-start">
+                <div class="flex items-start" *ngIf = "age>=17">
                   <div class="flex items-center h-5">
                     <input id="elite" name="elite" type="checkbox" [(ngModel)]="rider.isElite"
                       class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
@@ -171,7 +185,7 @@
               </div>
             </fieldset>
             <div class="flex justify-end mt-5">
-              <button type="button"
+              <button type="button" (click)="cancel()"
                 class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Zruš</button>
               <button type="submit"
                 cąlass="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

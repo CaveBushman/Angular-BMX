@@ -156,7 +156,7 @@
                   <p class="text-gray-500">pokud budeš jezdit kategorii Cruiser</p>
                 </div>
               </div>
-              <div class="flex items-start">
+              <div class="flex items-start" *ngIf = "age >= 17">
                 <div class="flex items-center h-5">
                   <input id="elite" name="elite" type="checkbox" [(ngModel)]="rider.isElite"
                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">

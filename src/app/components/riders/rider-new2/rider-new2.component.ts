@@ -46,6 +46,10 @@ export class RiderNew2Component implements OnInit {
       this.rider.Gender = 'Muž';
     }
     this.rider.girlBonus = true;
+
+      // zjistit věk jezdce
+      this.age =
+      this.currentYear - parseInt(this.rider.Birthdate.substring(0, 4));
   }
 
   private hideAlert() {
@@ -83,9 +87,7 @@ export class RiderNew2Component implements OnInit {
       return;
     }
 
-    // zjistit věk jezdce
-    this.age =
-      this.currentYear - parseInt(this.rider.Birthdate.substring(0, 4));
+  
 
     // zjistit kategorie
 
