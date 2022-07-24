@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'rider-new', component: RiderNewComponent },
   { path: `rider-new-3`, component: RiderNew3Component },
   { path: `riders-admin`, component: RidersAdminComponent },
+  { path: 'rider-edit/:id', component: RiderEditComponent},
   { path: 'clubs', component: ClubsComponent },
   { path: `clubs/:id`, component: ClubDetailComponent },
   { path: 'rankings', component: RankingsComponent },
@@ -47,7 +48,7 @@ const routes: Routes = [
   { path: `news/:id`, component: NewsDetailComponent },
   { path: 'rules', component: RulesComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'rider-edit/:id', component: RiderEditComponent},
+  
 ];
 
 @NgModule({

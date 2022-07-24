@@ -272,12 +272,6 @@ export class EventAdminComponent implements OnInit {
       // TODO: Uložit název nového souboru do databáze
 
       // TODO: Smazat starý soubor
-
-      if (oldFileName) {
-        // kod pro smazání starého souboru
-
-
-      }
     }
 
     if (this.btnPDF1 != 'Click to upload') {
@@ -298,9 +292,7 @@ export class EventAdminComponent implements OnInit {
           this.eventsService.postDeleteFile(removeFile).subscribe((response: any) => {
             console.log(response.data)
             // Aktualizuj obsah resultsPDF
-            this.eventsService.getEvent(this._eventID).subscribe((response: any) => {
-              this.event = response.data;
-            })
+            this.event.resultsPDF = newFileNamePDF
           })
         })
       })
@@ -325,9 +317,7 @@ export class EventAdminComponent implements OnInit {
           this.eventsService.postDeleteFile(removeFile).subscribe((response: any) => {
             console.log(response.data)
             // Aktualizuj obsah resultsFast
-            this.eventsService.getEvent(this._eventID).subscribe((response: any) => {
-              this.event = response.data;
-            })
+            this.event.resultsFast = newFilenameFast
           })
         })
       })
@@ -354,10 +344,8 @@ export class EventAdminComponent implements OnInit {
           const removeFile = { "filename": "uploads/bem/" + oldFileName }
           this.eventsService.postDeleteFile(removeFile).subscribe((response: any) => {
             console.log(response.data)
-            // Aktualizuj obsah resultsFast
-            this.eventsService.getEvent(this._eventID).subscribe((response: any) => {
-              this.event = response.data;
-            })
+            // Aktualizuj obsah backupBEM
+            this.event.backupBEM = newFilenameBem
           })
         })
       })
