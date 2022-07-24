@@ -38,25 +38,25 @@
                 class="py-1 w-full my-1 px-4 text-sm font-medium sm:pr-6 btn--yellow blurApp" *ngIf="event.isRegOpen">
                 Přihlásit</div>
 
-              <div class="">
+              <div class="" *ngIf = "event.resultSeries || event.resultsPDF || event.resultsFast || event.resultsXLS" >
                 <app-dropdown>
                   <button button
                     class="dropdown-btn w-full py-1 my-1 px-4 text-sm font-medium sm:pr-6 btn--green">Výsledky</button>
                   <div content class="dropdown-content ">
                     <ul>
-                      <li class="border-b-2 p-2 cursor-pointer">
+                      <li class="border-b-2 p-2 cursor-pointer" *ngIf = "event.resultsXLS">
                         <div>HTML</div>
                       </li>
-                      <li class="border-b-2 p-2 cursor-pointer">
+                      <li class="border-b-2 p-2 cursor-pointer" *ngIf = "event.resultsXLS">
                         <div>XML</div>
                       </li>
 
-                      <li class="border-b-2 p-2 cursor-pointer">
+                      <li class="border-b-2 p-2 cursor-pointer" *ngIf = "event.resultsPDF">
                         <div>PDF
                           celkové výsledky</div>
                       </li>
 
-                      <li class="border-b-2 p-2 cursor-pointer">
+                      <li class="border-b-2 p-2 cursor-pointer" *ngIf = "event.resultsFast">
                         <div>PDF
                           50 nejrychlejších jezdců</div>
                       </li>
