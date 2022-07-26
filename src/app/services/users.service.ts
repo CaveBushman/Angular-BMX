@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { tap, map, switchMap, take } from "rxjs/operators";
 import { BehaviorSubject, of, Subject } from 'rxjs';
@@ -103,7 +103,10 @@ export class UsersService implements OnInit, OnDestroy {
   }
 
   logout() {
-    //TODO: send logout
+    const token = this._authData.value?.token
+    if(!token) return
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`)
+    this.http.post(`${this.URL}logout`, {}, { headers }).subscribe()
     localStorage.removeItem('authData')
     this._authData.next(null)
   }
